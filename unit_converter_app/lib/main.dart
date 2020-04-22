@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:unit_converter_app/components/category_tile.dart';
 
 void main() {
   return runApp(MyApp());
@@ -15,10 +14,7 @@ class MyApp extends StatelessWidget {
           centerTitle: true,
         ),
         body: Center(
-          child: CategoryTile(
-            iconLocation: Icons.access_alarm,
-            name: 'Length',
-          ),
+          child: Text("BHARAT"),
         ),
       ),
     );
