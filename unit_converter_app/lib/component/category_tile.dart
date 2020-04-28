@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unitconverterapp/component/category.dart';
+import 'package:unitconverterapp/screens/unit_screen.dart';
 
 final _backgroundColor = Color(0xfffbfbfb);
 final _textColor = Color(0xff404047);
@@ -19,6 +20,13 @@ class CategoryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _openConverterRoute() {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (BuildContext context) {
+        return UnitConverter();
+      }));
+    }
+
     return Padding(
       padding: _padding8,
       child: Container(
@@ -39,7 +47,7 @@ class CategoryTile extends StatelessWidget {
         child: Material(
           color: Colors.transparent,
           child: InkWell(
-            onTap: () {},
+            onTap: () {_openConverterRoute();},
             borderRadius: _borderRadius,
             splashColor: _splashColor,
             highlightColor: _highlightColor,

@@ -62,7 +62,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
       return GridView.count(
         crossAxisCount: 2,
         childAspectRatio: 1,
-        padding: EdgeInsets.all(15.0),
+        padding: EdgeInsets.all(20.0),
         children: _categories.map((Category c) {
           return CategoryTile(category: c);
         }).toList(),
