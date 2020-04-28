@@ -3,7 +3,8 @@ import 'package:unitconverterapp/screens/category_screen.dart';
 import 'package:device_preview/device_preview.dart';
 
 void main() => runApp(
-  DevicePreview(builder: (context) => MyApp(),),
+  MyApp(),
+  // DevicePreview(builder: (context) => MyApp(),),
 );
 
 class MyApp extends StatelessWidget {
@@ -11,13 +12,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      locale: DevicePreview.of(context).locale,
-      builder: DevicePreview.appBuilder,
+      // locale: DevicePreview.of(context).locale,
+      // builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       theme: Theme.of(context).copyWith(
         backgroundColor: Color(0xff3b3865),
         primaryColorLight: Color(0xff3b3865),
         primaryColorDark: Color(0xff9677ee),
+        canvasColor: Color(0xfff5f5f5),
         textTheme: Theme.of(context).textTheme.copyWith(
               headline: TextStyle(
                 fontFamily: 'Roboto_Con',

@@ -19,6 +19,8 @@ class CategoryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     void _openConverterRoute() {
       Navigator.push(context,
           MaterialPageRoute(builder: (BuildContext context) {
@@ -29,8 +31,8 @@ class CategoryTile extends StatelessWidget {
     return Padding(
       padding: _padding8,
       child: Container(
-        height: 145,
-        width: 135,
+        height: 0.16121346886912325798 * height,
+        width: 0.15009529860228717122 * height,
         decoration: BoxDecoration(
           color: _backgroundColor,
           borderRadius: _borderRadius,
@@ -46,7 +48,10 @@ class CategoryTile extends StatelessWidget {
         child: Material(
           color: Colors.transparent,
           child: InkWell(
-            onTap: () {_openConverterRoute();},
+            onTap: () {
+              _openConverterRoute();
+              print('Height: $height || Width: $width');
+            },
             borderRadius: _borderRadius,
             splashColor: _splashColor,
             highlightColor: _highlightColor,
@@ -55,21 +60,21 @@ class CategoryTile extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(height: 2.0),
+                  SizedBox(height: 0.00222363405336721735 * height),
                   Padding(
                     padding: _padding8,
                     child: Image.asset(
                       category.iconLocation,
-                      height: 65,
-                      width: 65,
+                      height: 0.07226810673443456392 * height,
+                      width: 0.07226810673443456392 * height,
                     ),
                   ),
-                  SizedBox(height: 2.0),
+                  SizedBox(height: 0.00222363405336721735 * height),
                   Text(
                     category.name,
                     style: Theme.of(context).textTheme.caption,
                   ),
-                  SizedBox(height: 5.0),
+                  SizedBox(height: 0.00555908513341804338 * height),
                 ],
               ),
             ),
