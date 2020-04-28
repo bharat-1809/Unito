@@ -94,7 +94,7 @@ class _UnitConverterState extends State<UnitConverter> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 SizedBox(width: 0.0),
-                Text("Length", style: headText),
+                Text("Length", style: Theme.of(context).textTheme.title),
                 SizedBox(width: 13.5),
                 Image.asset(
                   'assets/icons/length2.png',

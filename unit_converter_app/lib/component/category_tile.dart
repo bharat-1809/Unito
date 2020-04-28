@@ -3,7 +3,6 @@ import 'package:unitconverterapp/component/category.dart';
 import 'package:unitconverterapp/screens/unit_screen.dart';
 
 final _backgroundColor = Color(0xfffbfbfb);
-final _textColor = Color(0xff404047);
 final _borderRadius = BorderRadius.circular(12.5);
 final _padding8 = EdgeInsets.all(8.0);
 final _splashColor = Color(0xff7662aa);
@@ -68,12 +67,7 @@ class CategoryTile extends StatelessWidget {
                   SizedBox(height: 2.0),
                   Text(
                     category.name,
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.bold,
-                      color: _textColor,
-                      fontSize: 20,
-                    ),
+                    style: Theme.of(context).textTheme.caption,
                   ),
                   SizedBox(height: 5.0),
                 ],

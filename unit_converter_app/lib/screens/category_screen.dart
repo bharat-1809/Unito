@@ -109,11 +109,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     children: <Widget>[
                       Text(
                         "Unit",
-                        style: _headText,
+                        style: Theme.of(context).textTheme.headline,
                       ),
                       Text(
                         "Converter",
-                        style: _headText,
+                        style: Theme.of(context).textTheme.headline,
                       ),
                     ],
                   ),
@@ -131,12 +131,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               child: Center(
                 child: Text(
                   "Select a Category",
-                  style: TextStyle(
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w700,
-                    fontSize: 17,
-                    color: Color(0xff7655c8),
-                  ),
+                  style: Theme.of(context).textTheme.subhead,
                 ),
               ),
             ),
