@@ -58,6 +58,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final width = MediaQuery.of(context).size.width;
     Widget _buildPortraitView() {
       return GridView.count(
         crossAxisCount: 2,
@@ -78,16 +80,21 @@ class _CategoryScreenState extends State<CategoryScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
+                SizedBox(width: width / 50),
                 Icon(
                   Icons.brightness_medium,
                   size: 30,
                   color: Color(0xff333237),
                 ),
-                SizedBox(width: MediaQuery.of(context).size.width / 2),
-                Image.asset(
-                  'assets/icons/fourB.png',
-                  height: 25,
-                  width: 25,
+                SizedBox(width: width / 2),
+                FlatButton(
+                  padding: EdgeInsets.all(0.0),
+                  onPressed: () {},
+                  child: Image.asset(
+                    'assets/icons/fourB.png',
+                    height: 25,
+                    width: 25,
+                  ),
                 ),
               ],
             ),
