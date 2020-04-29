@@ -13,6 +13,7 @@ class _UnitConverterState extends State<UnitConverter> {
     final height = MediaQuery.of(context).size.height;
     final bgUIRotation = 15; // Rotation angle for background UI container
 
+// Input Container
     Widget unitInputContainer() {
       return Container(
         margin: EdgeInsets.all(5.0),
@@ -71,7 +72,7 @@ class _UnitConverterState extends State<UnitConverter> {
                     print('Heigth: $height || Width: $width');
                   },
                   child: Image.asset(
-                    'assets/icons/fourW.png',
+                    'assets/icons/menuW.png',
                     height: 0.02779542566709021689 * height,
                     width: 0.02779542566709021689 * height,
                   ),
@@ -80,6 +81,8 @@ class _UnitConverterState extends State<UnitConverter> {
               ],
             ),
             SizedBox(height: 0.06570902160101652054 * height),
+
+            // Title and Image Row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -138,7 +141,12 @@ class _UnitConverterState extends State<UnitConverter> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xff5035e4), Color(0xff9a6dfc), Color(0xff5035e4), Color(0xff9a6dfc),],
+            colors: [
+              Color(0xff5035e4),
+              Color(0xff9a6dfc),
+              Color(0xff5035e4),
+              Color(0xff9a6dfc),
+            ],
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
           ),

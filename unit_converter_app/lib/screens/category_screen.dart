@@ -81,7 +81,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     print('Height: $height || Width: $width');
                   },
                   child: Image.asset(
-                    'assets/icons/fourB.png',
+                    'assets/icons/menuB.png',
                     height: 0.02779542566709021689 * height,
                     width: 0.02779542566709021689 * height,
                   ),
