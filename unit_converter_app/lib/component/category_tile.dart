@@ -8,6 +8,7 @@ final _padding8 = EdgeInsets.all(8.0);
 final _splashColor = Color(0xff7662aa);
 final _highlightColor = Color(0xffac8ae8);
 
+/// Creates a tile that contains [Category] information
 class CategoryTile extends StatelessWidget {
   final Category category;
 

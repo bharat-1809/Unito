@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-// Unit Converter Page
+/// Unit Converter Page.
+/// Builds the Unit Converter Page
 class UnitConverter extends StatefulWidget {
   @override
   _UnitConverterState createState() => _UnitConverterState();
@@ -11,9 +12,12 @@ class _UnitConverterState extends State<UnitConverter> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final bgUIRotation = 15; // Rotation angle for background UI container
 
-// Input Container
+    /// Rotation angle for background UI container
+    final bgUIRotation = 15;
+
+    /// Input Container
+    /// Contains the Dropdowns and Input container
     Widget unitInputContainer() {
       return Container(
         margin: EdgeInsets.all(5.0),
@@ -35,7 +39,8 @@ class _UnitConverterState extends State<UnitConverter> {
       );
     }
 
-// UI Design (Top of the stack)
+    /// UI Design (Top of the stack)
+    /// Contains the title, buttons and image
     Widget _topDesign() {
       return Container(
         color: Colors.transparent,
@@ -110,7 +115,8 @@ class _UnitConverterState extends State<UnitConverter> {
       );
     }
 
-// Background UI Widget ( the design one )
+    /// Background UI Widget ( the design one )
+    /// Its the transformed Container for UI design
     Widget _backgroundUI() {
       return Stack(children: [
         Container(
@@ -137,6 +143,7 @@ class _UnitConverterState extends State<UnitConverter> {
       ]);
     }
 
+    /// Final Return
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(

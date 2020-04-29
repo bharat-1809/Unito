@@ -3,6 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:unitconverterapp/component/category.dart';
 import 'package:unitconverterapp/component/category_tile.dart';
 
+/// Builds the main screen.
+/// Containing the title, buttons and GridView
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen();
   @override
@@ -10,8 +12,11 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
+
+  /// Creates a list of [Category] widgets for storing each category information
   final _categories = <Category>[];
 
+  /// List of Category names
   static const _categoryNames = <String>[
     'Length',
     'Area',
@@ -21,6 +26,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     'Currency',
   ];
 
+  /// List of Category icon location
   final _iconLocation = <String>[
     'assets/icons/length1.png',
     'assets/icons/area1.png',
@@ -30,6 +36,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
     'assets/icons/currency1.png',
   ];
 
+  /// Overides the build method and adds each [Category] to the
+  /// category list in initial state
   @override
   void initState() {
     super.initState();
@@ -46,6 +54,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+
+    /// Builds Portrait View
     Widget _buildPortraitView() {
       return GridView.count(
         crossAxisCount: 2,
@@ -57,6 +67,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
       );
     }
 
+    /// Builds the top bar with title and buttons
     Widget _topBar() {
       return Container(
         child: Column(
@@ -131,6 +142,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
       );
     }
 
+    /// Builds the final screen
     Widget listView() {
       return Column(
         children: <Widget>[

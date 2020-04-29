@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// A class containing [Category] name and iconLocation
 class Category {
   final String iconLocation;
   final String name;

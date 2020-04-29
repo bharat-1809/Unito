@@ -3,9 +3,9 @@ import 'package:unitconverterapp/screens/category_screen.dart';
 import 'package:device_preview/device_preview.dart';
 
 void main() => runApp(
-  MyApp(),
-  // DevicePreview(builder: (context) => MyApp(),),
-);
+      MyApp(),
+      // DevicePreview(builder: (context) => MyApp(),),
+    );
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -15,10 +15,15 @@ class MyApp extends StatelessWidget {
       // locale: DevicePreview.of(context).locale,
       // builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
+      darkTheme: Theme.of(context).copyWith(
+        brightness: Brightness.dark,
+        primaryColor: Color(0xff12035e),
+        canvasColor: Color(0xff3a376c),
+      ),
       theme: Theme.of(context).copyWith(
+        brightness: Brightness.light,
         backgroundColor: Color(0xff3b3865),
-        primaryColorLight: Color(0xff3b3865),
-        primaryColorDark: Color(0xff9677ee),
+        primaryColor: Color(0xff3b3865),
         canvasColor: Color(0xfff5f5f5),
         textTheme: Theme.of(context).textTheme.copyWith(
               headline: TextStyle(
