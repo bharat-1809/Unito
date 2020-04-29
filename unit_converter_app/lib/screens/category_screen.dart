@@ -3,6 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:unitconverterapp/component/category.dart';
 import 'package:unitconverterapp/component/category_tile.dart';
 
+/// Builds the main screen.
+/// Containing the title, buttons and GridView
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen();
   @override
@@ -10,8 +12,11 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
+
+  /// Creates a list of [Category] widgets for storing each category information
   final _categories = <Category>[];
 
+  /// List of Category names
   static const _categoryNames = <String>[
     'Length',
     'Area',
@@ -21,6 +26,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     'Currency',
   ];
 
+  /// List of Category icon location
   final _iconLocation = <String>[
     'assets/icons/length1.png',
     'assets/icons/area1.png',
@@ -30,20 +36,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
     'assets/icons/currency1.png',
   ];
 
-  final _headText = TextStyle(
-    fontFamily: 'Roboto_Con',
-    fontSize: 50,
-    fontWeight: FontWeight.bold,
-    color: Color(0xff1d2440),
-    shadows: [
-      Shadow(
-        color: Color(0xffd6e0e9),
-        offset: Offset(0.0, 0.0),
-        blurRadius: 15,
-      ),
-    ],
-  );
-
+  /// Overides the build method and adds each [Category] to the
+  /// category list in initial state
   @override
   void initState() {
     super.initState();
@@ -58,6 +52,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+
+    /// Builds Portrait View
     Widget _buildPortraitView() {
       return GridView.count(
         crossAxisCount: 2,
@@ -69,32 +67,42 @@ class _CategoryScreenState extends State<CategoryScreen> {
       );
     }
 
+    /// Builds the top bar with title and buttons
     Widget _topBar() {
       return Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 35),
+            SizedBox(height: 0.03891359593392630365 * height),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
+                SizedBox(width: width / 50),
                 Icon(
                   Icons.brightness_medium,
-                  size: 30,
+                  size: 0.03335451080050826027 * height,
                   color: Color(0xff333237),
                 ),
-                SizedBox(width: MediaQuery.of(context).size.width / 2),
-                Image.asset(
-                  'assets/icons/fourB.png',
-                  height: 25,
-                  width: 25,
+                SizedBox(width: width / 2),
+                FlatButton(
+                  padding: EdgeInsets.all(0.0),
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onPressed: () {
+                    print('Height: $height || Width: $width');
+                  },
+                  child: Image.asset(
+                    'assets/icons/menuB.png',
+                    height: 0.02779542566709021689 * height,
+                    width: 0.02779542566709021689 * height,
+                  ),
                 ),
               ],
             ),
-            SizedBox(height: 35),
+            SizedBox(height: 0.03891359593392630365 * height),
             Row(
               children: [
-                SizedBox(width: 40),
+                SizedBox(width: 0.09722222222222221952 * width),
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Column(
@@ -102,43 +110,39 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     children: <Widget>[
                       Text(
                         "Unit",
-                        style: _headText,
+                        style: Theme.of(context).textTheme.headline.copyWith(fontSize: 0.05559085133418043379 * height),
                       ),
                       Text(
                         "Converter",
-                        style: _headText,
+                        style: Theme.of(context).textTheme.headline.copyWith(fontSize: 0.05559085133418043379 * height),
                       ),
                     ],
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 35),
+            SizedBox(height: 0.03891359593392630365 * height),
             Container(
-              width: 220,
+              width: 0.53472222222222220737 * width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(70),
                 color: Color(0xffd6cef3),
               ),
-              height: 40,
+              height: 0.04447268106734434703 * height,
               child: Center(
                 child: Text(
                   "Select a Category",
-                  style: TextStyle(
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w700,
-                    fontSize: 17,
-                    color: Color(0xff7655c8),
-                  ),
+                  style: Theme.of(context).textTheme.subhead.copyWith(fontSize:0.01890088945362134749 * height),
                 ),
               ),
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 0.03335451080050826027 * height),
           ],
         ),
       );
     }
 
+    /// Builds the final screen
     Widget listView() {
       return Column(
         children: <Widget>[
