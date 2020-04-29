@@ -3,23 +3,28 @@ import 'package:unitconverterapp/screens/category_screen.dart';
 import 'package:device_preview/device_preview.dart';
 
 void main() => runApp(
-      MyApp(),
-      // DevicePreview(builder: (context) => MyApp(),),
+      UnitConverterApp(),
+      // DevicePreview(builder: (context) => UnitConverterApp(),),
     );
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+/// Unit Converter App.
+/// Main Parent Widget
+class UnitConverterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       // locale: DevicePreview.of(context).locale,
       // builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
+
+      // DARK THEME
       darkTheme: Theme.of(context).copyWith(
         brightness: Brightness.dark,
         primaryColor: Color(0xff12035e),
         canvasColor: Color(0xff3a376c),
       ),
+
+      // LIGHT THEME
       theme: Theme.of(context).copyWith(
         brightness: Brightness.light,
         backgroundColor: Color(0xff3b3865),
