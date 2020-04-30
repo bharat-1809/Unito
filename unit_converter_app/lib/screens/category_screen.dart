@@ -12,7 +12,6 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
-
   /// Creates a list of [Category] widgets for storing each category information
   final _categories = <Category>[];
 
@@ -55,7 +54,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
+    ///
     /// Builds Portrait View
+    ///
     Widget _buildPortraitView() {
       return GridView.count(
         crossAxisCount: 2,
@@ -67,23 +68,33 @@ class _CategoryScreenState extends State<CategoryScreen> {
       );
     }
 
+    ///
     /// Builds the top bar with title and buttons
+    ///
     Widget _topBar() {
       return Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 0.03891359593392630365 * height),
+            /// Spacer
+            SizedBox(height: 0.02891359593392630365 * height),
+
+            /// Top Icon Row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
+                /// Spacer
                 SizedBox(width: width / 50),
+
+                /// Theme toggle icon
                 Icon(
                   Icons.brightness_medium,
                   size: 0.03335451080050826027 * height,
                   color: Color(0xff333237),
                 ),
                 SizedBox(width: width / 2),
+
+                /// Menu Icon
                 FlatButton(
                   padding: EdgeInsets.all(0.0),
                   splashColor: Colors.transparent,
@@ -99,7 +110,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 0.03891359593392630365 * height),
+
+            /// Spacer
+            SizedBox(height: 0.02891359593392630365 * height),
+
+            /// Heading Container
             Row(
               children: [
                 SizedBox(width: 0.09722222222222221952 * width),
@@ -110,20 +125,26 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     children: <Widget>[
                       Text(
                         "Unit",
-                        style: Theme.of(context).textTheme.headline.copyWith(fontSize: 0.05559085133418043379 * height),
+                        style: Theme.of(context).textTheme.headline.copyWith(
+                            fontSize: 0.05559085133418043379 * height),
                       ),
                       Text(
                         "Converter",
-                        style: Theme.of(context).textTheme.headline.copyWith(fontSize: 0.05559085133418043379 * height),
+                        style: Theme.of(context).textTheme.headline.copyWith(
+                            fontSize: 0.05559085133418043379 * height),
                       ),
                     ],
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 0.03891359593392630365 * height),
+
+            /// Spacer
+            SizedBox(height: 0.02091359593392630365 * height),
+
+            /// Container for sub-heading
             Container(
-              width: 0.53472222222222220737 * width,
+              width: 0.43472222222222220737 * width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(70),
                 color: Color(0xffd6cef3),
@@ -132,22 +153,29 @@ class _CategoryScreenState extends State<CategoryScreen> {
               child: Center(
                 child: Text(
                   "Select a Category",
-                  style: Theme.of(context).textTheme.subhead.copyWith(fontSize:0.01890088945362134749 * height),
+                  style: Theme.of(context)
+                      .textTheme
+                      .subhead
+                      .copyWith(fontSize: 0.01890088945362134749 * height),
                 ),
               ),
             ),
-            SizedBox(height: 0.03335451080050826027 * height),
+
+            /// Spacer
+            SizedBox(height: 0.02035451080050826027 * height),
           ],
         ),
       );
     }
 
+    ///
     /// Builds the final screen
+    ///
     Widget listView() {
       return Column(
         children: <Widget>[
-          _topBar(),
-          Flexible(child: _buildPortraitView()),
+          Expanded(flex: 3, child: _topBar()),
+          Expanded(flex: 5, child: _buildPortraitView()),
         ],
       );
     }

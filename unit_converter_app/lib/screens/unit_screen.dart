@@ -34,8 +34,8 @@ class _UnitConverterState extends State<UnitConverter> {
             ),
           ],
         ),
-        height: 1.2 * width,
-        width: height / 2.7,
+        height: 0.612745098 * height,
+        width: 0.7895884774 * width,
       );
     }
 
@@ -49,7 +49,7 @@ class _UnitConverterState extends State<UnitConverter> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             SizedBox(
-                height: 0.03891359593392630365 * height), // Used for spacing
+                height: 0.02891359593392630365 * height), // Used for spacing
             // Top Icon Row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -85,7 +85,7 @@ class _UnitConverterState extends State<UnitConverter> {
                 SizedBox(width: 0.0),
               ],
             ),
-            SizedBox(height: 0.06570902160101652054 * height),
+            SizedBox(height: 0.04570902160101652054 * height),
 
             // Title and Image Row
             Row(
@@ -97,18 +97,18 @@ class _UnitConverterState extends State<UnitConverter> {
                   style: Theme.of(context)
                       .textTheme
                       .title
-                      .copyWith(fontSize: 0.06226175349428208584 * height),
+                      .copyWith(fontSize: 0.06026175349428208584 * height),
                 ),
                 SizedBox(width: 0.03281249999999999909 * width),
                 Image.asset(
                   'assets/icons/length2.png',
-                  height: 0.11118170266836086757 * height,
-                  width: 0.11118170266836086757 * height,
+                  height: 0.11098170266836086757 * height,
+                  width: 0.11098170266836086757 * height,
                 ),
                 SizedBox(width: 0.0),
               ],
             ),
-            SizedBox(height: width / 5),
+            SizedBox(height: width / 7),
             unitInputContainer(),
           ],
         ),
