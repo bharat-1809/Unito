@@ -26,13 +26,22 @@ class _CategoryScreenState extends State<CategoryScreen> {
   ];
 
   /// List of Category icon location
-  final _iconLocation = <String>[
+  final _iconLocationLight = <String>[
     'assets/icons/length1.png',
     'assets/icons/area1.png',
     'assets/icons/volume1.png',
     'assets/icons/weight1.png',
     'assets/icons/data1.png',
     'assets/icons/currency1.png',
+  ];
+
+  final _iconLocationDark = <String>[
+    'assets/icons/length2.png',
+    'assets/icons/area2.png',
+    'assets/icons/volume2.png',
+    'assets/icons/weight2.png',
+    'assets/icons/data2.png',
+    'assets/icons/currency2.png',
   ];
 
   /// Overides the build method and adds each [Category] to the
@@ -42,7 +51,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     super.initState();
     for (var i = 0; i < _categoryNames.length; ++i) {
       var category = Category(
-        iconLocation: _iconLocation[i],
+        iconLocation: _iconLocationLight[i],
         name: _categoryNames[i],
       );
       _categories.add(category);
@@ -61,110 +70,128 @@ class _CategoryScreenState extends State<CategoryScreen> {
       return GridView.count(
         crossAxisCount: 2,
         childAspectRatio: 1,
-        padding: EdgeInsets.all(20.0),
+        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 1.0),
         children: _categories.map((Category c) {
           return CategoryTile(category: c);
         }).toList(),
       );
     }
 
+    /// Returns the Menu Icon based on the theme
+    Widget getIcon() {
+      if (Theme.of(context).brightness != Brightness.dark) {
+        return Image.asset(
+          'assets/icons/menuB.png',
+          height: 0.02779542566709021689 * height,
+          width: 0.02779542566709021689 * height,
+        );
+      } else {
+        return Image.asset(
+          'assets/icons/menuW.png',
+          height: 0.02779542566709021689 * height,
+          width: 0.02779542566709021689 * height,
+        );
+      }
+    }
+
     ///
     /// Builds the top bar with title and buttons
     ///
     Widget _topBar() {
-      return Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            /// Spacer
-            SizedBox(height: 0.02891359593392630365 * height),
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          /// Spacer
+          SizedBox(height: 0.02491359593392630365 * height),
 
-            /// Top Icon Row
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                /// Spacer
-                SizedBox(width: width / 50),
+          /// Top Icon Row
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              /// Spacer
+              SizedBox(width: width / 90),
 
-                /// Theme toggle icon
-                Icon(
+              /// Theme toggle icon
+              IconButton(
+                onPressed: () {},
+                padding: EdgeInsets.all(0.0),
+                highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                icon: Icon(
                   Icons.brightness_medium,
                   size: 0.03335451080050826027 * height,
-                  color: Color(0xff333237),
-                ),
-                SizedBox(width: width / 2),
-
-                /// Menu Icon
-                FlatButton(
-                  padding: EdgeInsets.all(0.0),
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onPressed: () {
-                    print('Height: $height || Width: $width');
-                  },
-                  child: Image.asset(
-                    'assets/icons/menuB.png',
-                    height: 0.02779542566709021689 * height,
-                    width: 0.02779542566709021689 * height,
-                  ),
-                ),
-              ],
-            ),
-
-            /// Spacer
-            SizedBox(height: 0.02891359593392630365 * height),
-
-            /// Heading Container
-            Row(
-              children: [
-                SizedBox(width: 0.09722222222222221952 * width),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "Unit",
-                        style: Theme.of(context).textTheme.headline.copyWith(
-                            fontSize: 0.05559085133418043379 * height),
-                      ),
-                      Text(
-                        "Converter",
-                        style: Theme.of(context).textTheme.headline.copyWith(
-                            fontSize: 0.05559085133418043379 * height),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-
-            /// Spacer
-            SizedBox(height: 0.02091359593392630365 * height),
-
-            /// Container for sub-heading
-            Container(
-              width: 0.43472222222222220737 * width,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(70),
-                color: Color(0xffd6cef3),
-              ),
-              height: 0.04447268106734434703 * height,
-              child: Center(
-                child: Text(
-                  "Select a Category",
-                  style: Theme.of(context)
-                      .textTheme
-                      .subhead
-                      .copyWith(fontSize: 0.01890088945362134749 * height),
+                  color: Theme.of(context).iconTheme.color,
                 ),
               ),
-            ),
+              SizedBox(width: width / 2),
 
-            /// Spacer
-            SizedBox(height: 0.02035451080050826027 * height),
-          ],
-        ),
+              /// Menu Icon
+              FlatButton(
+                padding: EdgeInsets.all(0.0),
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onPressed: () {
+                  print('Height: $height || Width: $width');
+                },
+                child: getIcon(),
+              ),
+            ],
+          ),
+
+          /// Spacer
+          SizedBox(height: 0.01991359593392630365 * height),
+
+          /// Heading Container
+          Row(
+            children: [
+              SizedBox(width: 0.09722222222222221952 * width),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "Unit",
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline
+                        .copyWith(fontSize: 0.05559085133418043379 * height),
+                  ),
+                  Text(
+                    "Converter",
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline
+                        .copyWith(fontSize: 0.05559085133418043379 * height),
+                  ),
+                ],
+              ),
+            ],
+          ),
+
+          /// Spacer
+          SizedBox(height: 0.03951359593392630365 * height),
+
+          /// Container for sub-heading
+          Container(
+            width: 0.43472222222222220737 * width,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(70),
+              color: Theme.of(context).accentColor,
+            ),
+            height: 0.04447268106734434703 * height,
+            child: Center(
+              child: Text(
+                "Select a Category",
+                style: Theme.of(context)
+                    .textTheme
+                    .subhead
+                    .copyWith(fontSize: 0.01890088945362134749 * height),
+              ),
+            ),
+          ),
+
+          /// Spacer
+          SizedBox(height: 0.02035451080050826027 * height),
+        ],
       );
     }
 
@@ -181,7 +208,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     }
 
     return Scaffold(
-      backgroundColor: Color(0xfffbfbfb),
+      backgroundColor: Theme.of(context).backgroundColor,
       resizeToAvoidBottomPadding: false,
       body: SafeArea(
         child: listView(),

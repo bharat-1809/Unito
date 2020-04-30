@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// TODO: Change colors to theme colors
+// TODO: Change fonts to theme fonts
 /// Unit Converter Page.
 /// Builds the Unit Converter Page
 class UnitConverter extends StatefulWidget {
@@ -36,82 +38,92 @@ class _UnitConverterState extends State<UnitConverter> {
         ),
         height: 0.612745098 * height,
         width: 0.7895884774 * width,
+        // TODO: Implement the input method for the unit conversion
       );
     }
 
     /// UI Design (Top of the stack)
     /// Contains the title, buttons and image
     Widget _topDesign() {
-      return Container(
-        color: Colors.transparent,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            SizedBox(
-                height: 0.02891359593392630365 * height), // Used for spacing
-            // Top Icon Row
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                SizedBox(width: height / 50),
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          /// Spacer
+          Column(
+            children: <Widget>[
+              SizedBox(height: 0.02491359593392630365 * height),
+            ],
+          ),
 
-                // Back Icon
-                IconButton(
-                    icon: Icon(
-                      Icons.arrow_back,
-                      size: 0.03335451080050826027 * height,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }),
-                SizedBox(width: height / 4),
+          /// Top Icon Row
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              SizedBox(width: height / 50),
 
-                // Menu Icon
-                FlatButton(
-                  highlightColor: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  padding: EdgeInsets.all(0),
-                  onPressed: () {
-                    print('Heigth: $height || Width: $width');
-                  },
-                  child: Image.asset(
-                    'assets/icons/menuW.png',
-                    height: 0.02779542566709021689 * height,
-                    width: 0.02779542566709021689 * height,
+              /// Back Icon
+              IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    size: 0.03335451080050826027 * height,
+                    color: Colors.white,
                   ),
-                ),
-                SizedBox(width: 0.0),
-              ],
-            ),
-            SizedBox(height: 0.04570902160101652054 * height),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  }),
+              SizedBox(width: height / 4),
 
-            // Title and Image Row
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                SizedBox(width: 0.0),
-                Text(
-                  "Length",
-                  style: Theme.of(context)
-                      .textTheme
-                      .title
-                      .copyWith(fontSize: 0.06026175349428208584 * height),
+              /// Menu Icon
+              FlatButton(
+                highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                padding: EdgeInsets.all(0),
+                onPressed: () {
+                  print('Heigth: $height || Width: $width');
+                },
+                child: Image.asset(
+                  'assets/icons/menuW.png',
+                  height: 0.02779542566709021689 * height,
+                  width: 0.02779542566709021689 * height,
                 ),
-                SizedBox(width: 0.03281249999999999909 * width),
-                Image.asset(
-                  'assets/icons/length2.png',
-                  height: 0.11098170266836086757 * height,
-                  width: 0.11098170266836086757 * height,
-                ),
-                SizedBox(width: 0.0),
-              ],
-            ),
-            SizedBox(height: width / 7),
-            unitInputContainer(),
-          ],
-        ),
+              ),
+              SizedBox(width: 0.0),
+            ],
+          ),
+
+          /// Spacer
+          SizedBox(height: 0.04570902160101652054 * height),
+
+          /// Title and Image Row
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              /// Spacer
+              SizedBox(width: 0.0),
+              Text(
+                "Length",
+                style: Theme.of(context)
+                    .textTheme
+                    .title
+                    .copyWith(fontSize: 0.05826175349428208584 * height),
+              ),
+              SizedBox(width: 0.03281249999999999909 * width),
+              Image.asset(
+                'assets/icons/length2.png',
+                height: 0.11098170266836086757 * height,
+                width: 0.11098170266836086757 * height,
+              ),
+              SizedBox(width: 0.0),
+            ],
+          ),
+
+          /// Spacer
+          SizedBox(height: width / 7),
+
+          /// Unit Converter Input Container
+          unitInputContainer(),
+        ],
       );
     }
 
@@ -122,7 +134,7 @@ class _UnitConverterState extends State<UnitConverter> {
         Container(
           height: height * 0.96,
           width: width,
-          color: Color(0xfff5f5f5),
+          color: Theme.of(context).canvasColor,
         ),
         Positioned(
           top: -(0.22236340533672173514 * height),

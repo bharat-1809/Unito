@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:unitconverterapp/component/category.dart';
 import 'package:unitconverterapp/screens/unit_screen.dart';
 
-final _backgroundColor = Color(0xfffbfbfb);
 final _borderRadius = BorderRadius.circular(12.5);
 final _padding8 = EdgeInsets.all(8.0);
-final _splashColor = Color(0xff7662aa);
-final _highlightColor = Color(0xffac8ae8);
 
 /// Creates a tile that contains [Category] information
 class CategoryTile extends StatelessWidget {
@@ -35,7 +32,7 @@ class CategoryTile extends StatelessWidget {
         height: 0.16121346886912325798 * height,
         width: 0.15009529860228717122 * height,
         decoration: BoxDecoration(
-          color: _backgroundColor,
+          color: Theme.of(context).buttonColor,
           borderRadius: _borderRadius,
           boxShadow: [
             BoxShadow(
@@ -54,8 +51,8 @@ class CategoryTile extends StatelessWidget {
               print('Height: $height || Width: $width');
             },
             borderRadius: _borderRadius,
-            splashColor: _splashColor,
-            highlightColor: _highlightColor,
+            splashColor: Theme.of(context).splashColor,
+            highlightColor: Theme.of(context).highlightColor,
             child: Padding(
               padding: const EdgeInsets.all(5.0),
               child: Column(
