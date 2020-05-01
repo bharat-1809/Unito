@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:unitconverterapp/component/category.dart';
 
 /// Unit Converter Page.
 /// Builds the Unit Converter Page
 class UnitConverter extends StatefulWidget {
+  final Category category;
+  const UnitConverter({
+    Key key,
+    @required this.category,
+  })  : assert(category != null),
+        super(key: key);
   @override
   _UnitConverterState createState() => _UnitConverterState();
 }
@@ -100,7 +107,7 @@ class _UnitConverterState extends State<UnitConverter> {
               /// Spacer
               SizedBox(width: 0.0),
               Text(
-                "Length",
+                widget.category.name,
                 style: Theme.of(context)
                     .textTheme
                     .title
@@ -108,7 +115,7 @@ class _UnitConverterState extends State<UnitConverter> {
               ),
               SizedBox(width: 0.03281249999999999909 * width),
               Image.asset(
-                'assets/icons/length2.png',
+                'assets/icons/${widget.category.name.toLowerCase()}2.png',
                 height: 0.11098170266836086757 * height,
                 width: 0.11098170266836086757 * height,
               ),

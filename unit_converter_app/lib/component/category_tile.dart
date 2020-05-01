@@ -10,19 +10,19 @@ class CategoryTile extends StatelessWidget {
   final Category category;
 
   const CategoryTile({
-    Key key,
     @required this.category,
-  })  : assert(category != null),
-        super(key: key);
+  }) : assert(category != null);
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    void _openConverterRoute() {
+    void _openConverterRoute(Category categoryUnit) {
       Navigator.push(context,
           MaterialPageRoute(builder: (BuildContext context) {
-        return UnitConverter();
+        return UnitConverter(
+          category: categoryUnit,
+        );
       }));
     }
 
@@ -47,7 +47,7 @@ class CategoryTile extends StatelessWidget {
           color: Colors.transparent,
           child: InkWell(
             onTap: () {
-              _openConverterRoute();
+              _openConverterRoute(category);
               print('Height: $height || Width: $width');
             },
             borderRadius: _borderRadius,
