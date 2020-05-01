@@ -4,7 +4,7 @@ AppTheme appTheme = AppTheme();
 /// Changes the theme of the app
 class ThemeChanger with ChangeNotifier {
 
-  ThemeData _themeData = appTheme.lightTheme();
+  ThemeData _themeData = appTheme.getLightTheme();
 
   ThemeData get themeData => _themeData;
 
