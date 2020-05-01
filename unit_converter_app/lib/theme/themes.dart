@@ -12,16 +12,32 @@ class AppTheme {
   ThemeData darkTheme() {
     return Theme.of(context).copyWith(
       brightness: Brightness.dark,
+
+      /// Color for the Category tile
       buttonColor: Color.fromARGB(14, 216, 206, 243),
-      backgroundColor:
-          Color(0xff3a375c), // Background Color of the category screen
-      primaryColor: Color(0xff12035e),
+
+      /// Background Color of the category screen
+      backgroundColor: Color(0xff3a375c),
+      primaryColor: Color.fromARGB(245, 40, 37, 90),
       canvasColor: Color(0xff3a376c),
-      accentColor: Color(
-          0xffd6ceff), // Background color of sub-heading in category screen
-      iconTheme: IconThemeData(color: Colors.white), // Icon theme
-      splashColor: Color(0xff7662aa), // Splash color of category tile
-      highlightColor: Color(0xffac8ae8), // Highlight color of category tile
+
+      /// Background color of sub-heading in category screen
+      accentColor: Color(0xffd6ceff),
+
+      /// Icon theme
+      iconTheme: IconThemeData(color: Colors.white),
+
+      /// Splash color of category tile
+      splashColor: Color(0xff7662aa),
+
+      /// Highlight color of category tile
+      highlightColor: Color(0xffac8ae8),
+
+      /// [Gradient Color 1] for the background UI of UnitConverter Screen
+      focusColor: Color.fromARGB(100, 80, 53, 232),
+
+      /// [Gradient Color 2] for the background UI of UnitConverter Screen
+      hintColor: Color.fromARGB(100, 154, 109, 252),
 
       textTheme: Theme.of(context).textTheme.copyWith(
             /// Theme for UNIT CONVERTER text
@@ -78,15 +94,35 @@ class AppTheme {
   ThemeData lightTheme() {
     return Theme.of(context).copyWith(
       brightness: Brightness.light,
-      backgroundColor: Color(0xfffbfbfb), // Background Color of category screen
+
+      /// Background Color of category screen
+      backgroundColor: Color(0xfffbfbfb),
+
+      /// Color for the Category tile
       buttonColor: Color(0xfffbfbfb),
-      primaryColor: Color(0xff3b3865),
-      canvasColor: Color(0xfff5f5f5), // Canvas color of UnitConverter screen
-      accentColor: Color(
-          0xffd6cef3), // Background color of sub-heading in category screen
-      iconTheme: IconThemeData(color: Color(0xff333237)), // Icon theme
-      splashColor: Color(0xff7662aa), // Splash color of category tile
-      highlightColor: Color(0xffac8ae8), // Highlight color of category tile
+      primaryColor: Color(0xfffbfbfb),
+
+      /// Canvas color of UnitConverter screen
+      canvasColor: Color(0xfff5f5f5),
+
+      /// Background color of sub-heading in category screen
+      accentColor: Color(0xffd6cef3),
+
+      /// Icon theme
+      iconTheme: IconThemeData(color: Color(0xff333237)),
+
+      /// Splash color of category tile
+      splashColor: Color(0xff7662aa),
+
+      /// Highlight color of category tile
+      highlightColor: Color(0xffac8ae8),
+
+      /// [Gradient Color 1] for the background UI of UnitConverter Screen
+      focusColor: Color(0xff5035e4),
+
+      /// [Gradient Color 2] for the background UI of UnitConverter Screen
+      hintColor: Color(0xff9a6dfc),
+
       textTheme: Theme.of(context).textTheme.copyWith(
             /// Theme for UNIT CONVERTER text
             headline: TextStyle(

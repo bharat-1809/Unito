@@ -25,7 +25,7 @@ class _UnitConverterState extends State<UnitConverter> {
         margin: EdgeInsets.all(5.0),
         padding: EdgeInsets.all(16.0),
         decoration: BoxDecoration(
-          color: Color(0xfffbfbfb),
+          color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(8),
           boxShadow: [
             BoxShadow(
@@ -144,7 +144,7 @@ class _UnitConverterState extends State<UnitConverter> {
             width: height,
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color(0xff5035e4), Color(0xff9a6dfc)],
+                colors: [Theme.of(context).focusColor, Theme.of(context).hintColor],
                 begin: Alignment(0.8, 1.5),
                 end: Alignment.topLeft,
               ),
