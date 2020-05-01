@@ -14,11 +14,11 @@ class AppTheme {
       brightness: Brightness.dark,
       buttonColor: Color.fromARGB(14, 216, 206, 243),
       backgroundColor:
-          Color(0xff3a376c), // Background Color of the category screen
+          Color(0xff3a375c), // Background Color of the category screen
       primaryColor: Color(0xff12035e),
       canvasColor: Color(0xff3a376c),
       accentColor: Color(
-          0xffd6cef3), // Background color of sub-heading in category screen
+          0xffd6ceff), // Background color of sub-heading in category screen
       iconTheme: IconThemeData(color: Colors.white), // Icon theme
       splashColor: Color(0xff7662aa), // Splash color of category tile
       highlightColor: Color(0xffac8ae8), // Highlight color of category tile

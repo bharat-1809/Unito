@@ -67,6 +67,19 @@ class _CategoryScreenState extends State<CategoryScreen> {
     /// Builds Portrait View
     ///
     Widget _buildPortraitView() {
+      if (Theme.of(context).brightness == Brightness.light) {
+        setState(() {
+          for (var a = 0; a < _categories.length; ++a) {
+            _categories[a].iconLocation = _iconLocationLight[a];
+          }
+        });
+      } else {
+        setState(() {
+          for (var b = 0; b < _categories.length; ++b) {
+            _categories[b].iconLocation = _iconLocationDark[b];
+          }
+        });
+      }
       return GridView.count(
         crossAxisCount: 2,
         childAspectRatio: 1,
