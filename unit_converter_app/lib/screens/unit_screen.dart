@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-// TODO: Change colors to theme colors
-// TODO: Change fonts to theme fonts
 /// Unit Converter Page.
 /// Builds the Unit Converter Page
 class UnitConverter extends StatefulWidget {
@@ -144,7 +142,10 @@ class _UnitConverterState extends State<UnitConverter> {
             width: height,
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Theme.of(context).focusColor, Theme.of(context).hintColor],
+                colors: [
+                  Theme.of(context).focusColor,
+                  Theme.of(context).hintColor
+                ],
                 begin: Alignment(0.8, 1.5),
                 end: Alignment.topLeft,
               ),
@@ -161,10 +162,10 @@ class _UnitConverterState extends State<UnitConverter> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color(0xff5035e4),
-              Color(0xff9a6dfc),
-              Color(0xff5035e4),
-              Color(0xff9a6dfc),
+              Theme.of(context).focusColor.withAlpha(255),
+              Theme.of(context).hintColor.withAlpha(255),
+              Theme.of(context).focusColor.withAlpha(255),
+              Theme.of(context).hintColor.withAlpha(255),
             ],
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,

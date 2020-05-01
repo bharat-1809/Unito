@@ -12,6 +12,7 @@ dependencies:
 
   cupertino_icons: ^0.1.2
   device_preview: ^0.4.4
+  provider: ^4.0.5+1
   
 
 dev_dependencies:

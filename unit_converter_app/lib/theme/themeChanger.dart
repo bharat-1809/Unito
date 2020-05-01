@@ -1,24 +1,19 @@
 import 'package:flutter/material.dart';
-
+import 'package:unitconverterapp/theme/themes.dart';
+AppTheme appTheme = AppTheme();
 /// Changes the theme of the app
 class ThemeChanger with ChangeNotifier {
-  /// Theme data
-  ThemeData _themeData;
 
-  ThemeChanger(this._themeData);
+  ThemeData _themeData = appTheme.lightTheme();
 
-  /// Gets the current theme
-  getTheme() => _themeData;
+  ThemeData get themeData => _themeData;
 
-  /// Sets the theme
-  setTheme(ThemeData theme) {
-    _themeData = theme;
+  defaultTheme(ThemeData value) {
+    _themeData = value;
   }
 
-  /// Notifies listeners
-  @override
-  void notifyListeners() {
-    // TODO: implement notifyListeners
-    super.notifyListeners();
+  set themeData(ThemeData newValue) {
+    _themeData = newValue;
+    notifyListeners();
   }
 }

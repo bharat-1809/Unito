@@ -2,15 +2,11 @@ import 'package:flutter/material.dart';
 
 /// Sets theme of the app
 class AppTheme {
-  BuildContext context;
-
-  AppTheme({
-    @required this.context,
-  });
+  AppTheme();
 
   /// Sets the Dark Theme
   ThemeData darkTheme() {
-    return Theme.of(context).copyWith(
+    return ThemeData.dark().copyWith(
       brightness: Brightness.dark,
 
       /// Color for the Category tile
@@ -18,7 +14,7 @@ class AppTheme {
 
       /// Background Color of the category screen
       backgroundColor: Color(0xff3a375c),
-      primaryColor: Color.fromARGB(245, 40, 37, 90),
+      primaryColor: Color.fromARGB(255, 40, 37, 90),
       canvasColor: Color(0xff3a376c),
 
       /// Background color of sub-heading in category screen
@@ -39,7 +35,7 @@ class AppTheme {
       /// [Gradient Color 2] for the background UI of UnitConverter Screen
       hintColor: Color.fromARGB(100, 154, 109, 252),
 
-      textTheme: Theme.of(context).textTheme.copyWith(
+      textTheme: ThemeData.dark().textTheme.copyWith(
             /// Theme for UNIT CONVERTER text
             headline: TextStyle(
               fontFamily: 'Roboto_Con',
@@ -92,7 +88,7 @@ class AppTheme {
 
   /// Sets the Light Theme
   ThemeData lightTheme() {
-    return Theme.of(context).copyWith(
+    return ThemeData.light().copyWith(
       brightness: Brightness.light,
 
       /// Background Color of category screen
@@ -123,7 +119,7 @@ class AppTheme {
       /// [Gradient Color 2] for the background UI of UnitConverter Screen
       hintColor: Color(0xff9a6dfc),
 
-      textTheme: Theme.of(context).textTheme.copyWith(
+      textTheme: ThemeData.light().textTheme.copyWith(
             /// Theme for UNIT CONVERTER text
             headline: TextStyle(
               fontFamily: 'Roboto_Con',

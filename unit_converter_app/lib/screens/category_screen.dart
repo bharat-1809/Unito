@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:unitconverterapp/component/category.dart';
 import 'package:unitconverterapp/component/category_tile.dart';
+import 'package:unitconverterapp/theme/themeChanger.dart';
+import 'package:provider/provider.dart';
+import 'package:unitconverterapp/theme/themes.dart';
 
 /// Builds the main screen.
 /// Containing the title, buttons and GridView
@@ -62,12 +65,15 @@ class _CategoryScreenState extends State<CategoryScreen> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+    final theme = Provider.of<ThemeChanger>(context);
+    AppTheme appTheme = AppTheme();
+    bool isDarkTheme = Theme.of(context).brightness == Brightness.dark; 
 
     ///
     /// Builds Portrait View
     ///
     Widget _buildPortraitView() {
-      if (Theme.of(context).brightness == Brightness.light) {
+      if (!isDarkTheme) {
         setState(() {
           for (var a = 0; a < _categories.length; ++a) {
             _categories[a].iconLocation = _iconLocationLight[a];
@@ -92,7 +98,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
     /// Returns the Menu Icon based on the theme
     Widget getIcon() {
-      if (Theme.of(context).brightness != Brightness.dark) {
+      if (!isDarkTheme) {
         return Image.asset(
           'assets/icons/menuB.png',
           height: 0.02779542566709021689 * height,
@@ -115,7 +121,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           /// Spacer
-          SizedBox(height: 0.02491359593392630365 * height),
+          SizedBox(height: 0.02401359593392630365 * height),
 
           /// Top Icon Row
           Row(
@@ -126,7 +132,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
               /// Theme toggle icon
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  print("Theme change toogled");
+                  if (!isDarkTheme) {
+                    theme.themeData = appTheme.darkTheme();
+                  } else {
+                    theme.themeData = appTheme.lightTheme();
+                  }
+                },
                 padding: EdgeInsets.all(0.0),
                 highlightColor: Colors.transparent,
                 splashColor: Colors.transparent,
@@ -152,7 +165,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           ),
 
           /// Spacer
-          SizedBox(height: 0.01991359593392630365 * height),
+          SizedBox(height: 0.01901359593392630365 * height),
 
           /// Heading Container
           Row(
@@ -181,7 +194,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           ),
 
           /// Spacer
-          SizedBox(height: 0.03951359593392630365 * height),
+          SizedBox(height: 0.03901359593392630365 * height),
 
           /// Container for sub-heading
           Container(
