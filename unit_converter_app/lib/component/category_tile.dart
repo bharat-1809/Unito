@@ -18,8 +18,7 @@ class CategoryTile extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     void _openConverterRoute(Category categoryUnit) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (BuildContext context) {
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
         return UnitConverter(
           category: categoryUnit,
         );
