@@ -156,6 +156,13 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 highlightColor: Colors.transparent,
                 onPressed: () {
                   print('Height: $height || Width: $width');
+                  // Navigator.of(context).push(
+                  //   MaterialPageRoute(
+                  //     builder: (context) {
+                  //       return MenuScreen();
+                  //     },
+                  //   ),
+                  // );
                 },
                 child: getIcon(),
               ),

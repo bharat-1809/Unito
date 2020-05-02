@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unitconverterapp/component/category.dart';
+import 'package:unitconverterapp/component/unit_UI.dart';
 
 /// Unit Converter Page.
 /// Builds the Unit Converter Page
@@ -86,6 +87,13 @@ class _UnitConverterState extends State<UnitConverter> {
                 padding: EdgeInsets.all(0),
                 onPressed: () {
                   print('Heigth: $height || Width: $width');
+                  // Navigator.of(context).push(
+                  //   MaterialPageRoute(
+                  //     builder: (context) {
+                  //       return MenuScreen();
+                  //     },
+                  //   ),
+                  // );
                 },
                 child: Image.asset(
                   'assets/icons/menuW.png',
@@ -132,39 +140,9 @@ class _UnitConverterState extends State<UnitConverter> {
       );
     }
 
-    /// Background UI Widget ( the design one )
-    /// Its the transformed Container for UI design
-    Widget _backgroundUI() {
-      return Stack(children: [
-        Container(
-          height: height * 0.96,
-          width: width,
-          color: Theme.of(context).canvasColor,
-        ),
-        Positioned(
-          top: -(0.22236340533672173514 * height),
-          right: 0.08894536213468869406 * height,
-          child: Container(
-            height: 2 * width,
-            width: height,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Theme.of(context).focusColor,
-                  Theme.of(context).hintColor
-                ],
-                begin: Alignment(0.8, 1.5),
-                end: Alignment.topLeft,
-              ),
-            ),
-            transform: Matrix4.rotationZ(-bgUIRotation * 0.0174533),
-          ),
-        ),
-      ]);
-    }
-
     /// Final Return
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -179,20 +157,18 @@ class _UnitConverterState extends State<UnitConverter> {
           ),
         ),
         child: SafeArea(
-          child: CustomScrollView(
-            shrinkWrap: true,
-            slivers: <Widget>[
-              SliverList(
-                  delegate: SliverChildListDelegate([
-                Stack(
-                  // fit: StackFit.expand,
+          bottom: false,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Expanded(
+                child: Stack(
                   children: <Widget>[
-                    // Container(height: 2000),
-                    _backgroundUI(),
+                    UnitUI(),
                     _topDesign(),
                   ],
                 ),
-              ])),
+              ),
             ],
           ),
         ),
