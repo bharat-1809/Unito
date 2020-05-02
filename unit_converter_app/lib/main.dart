@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:unitconverterapp/screens/category_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:unitconverterapp/app.dart';
 import 'package:device_preview/device_preview.dart';
-import 'package:unitconverterapp/themes.dart';
+import 'package:unitconverterapp/theme/themeChanger.dart';
 
 void main() => runApp(
-      // UnitConverterApp(),
-      DevicePreview(
-      builder: (context) => UnitConverterApp(),
-      ),
+      UnitConverterApp(),
+      // DevicePreview(
+      //   builder: (context) => UnitConverterApp(),
+      // ),
     );
 
 /// Unit Converter App.
@@ -15,20 +16,9 @@ void main() => runApp(
 class UnitConverterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    AppTheme appTheme = AppTheme(context: context);
-
-    return MaterialApp(
-      locale: DevicePreview.of(context).locale,
-      builder: DevicePreview.appBuilder,
-      debugShowCheckedModeBanner: false,
-
-      /// DARK THEME
-      darkTheme: appTheme.darkTheme(),
-
-      /// LIGHT THEME
-      theme: appTheme.lightTheme(),
-      title: 'Unit Converter',
-      home: CategoryScreen(),
+    return ChangeNotifierProvider(
+      create: (context) => ThemeChanger(),
+      child: Home(),
     );
   }
 }
