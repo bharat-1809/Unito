@@ -47,7 +47,6 @@ class CategoryTile extends StatelessWidget {
           child: InkWell(
             onTap: () {
               _openConverterRoute(category);
-              print('Height: $height || Width: $width');
             },
             borderRadius: _borderRadius,
             splashColor: Theme.of(context).splashColor,

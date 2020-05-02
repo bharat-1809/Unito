@@ -21,9 +21,6 @@ class _UnitConverterState extends State<UnitConverter> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
-    /// Rotation angle for background UI container
-    final bgUIRotation = 15;
-
     /// Input Container
     /// Contains the Dropdowns and Input container
     Widget unitInputContainer() {

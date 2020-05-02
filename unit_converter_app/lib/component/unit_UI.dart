@@ -16,6 +16,7 @@ class _UnitUIState extends State<UnitUI> {
       color: Theme.of(context).canvasColor,
       child: Center(
         child: ClipPath(
+          clipBehavior: Clip.antiAlias,
           clipper: CustomPath(),
           child: Container(
             height: MediaQuery.of(context).size.height,
