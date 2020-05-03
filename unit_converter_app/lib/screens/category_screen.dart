@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:unitconverterapp/component/category.dart';
 import 'package:unitconverterapp/component/category_tile.dart';
+import 'package:unitconverterapp/screens/menu.dart';
 import 'package:unitconverterapp/theme/themeChanger.dart';
 import 'package:provider/provider.dart';
 import 'package:unitconverterapp/theme/themes.dart';
@@ -156,13 +157,13 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 highlightColor: Colors.transparent,
                 onPressed: () {
                   print('Height: $height || Width: $width');
-                  // Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     builder: (context) {
-                  //       return MenuScreen();
-                  //     },
-                  //   ),
-                  // );
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return MenuScreen();
+                      },
+                    ),
+                  );
                 },
                 child: getIcon(),
               ),

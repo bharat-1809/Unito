@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unitconverterapp/component/category.dart';
 import 'package:unitconverterapp/component/unit_UI.dart';
+import 'package:unitconverterapp/screens/menu.dart';
 
 /// Unit Converter Page.
 /// Builds the Unit Converter Page
@@ -84,13 +85,13 @@ class _UnitConverterState extends State<UnitConverter> {
                 padding: EdgeInsets.all(0),
                 onPressed: () {
                   print('Heigth: $height || Width: $width');
-                  // Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     builder: (context) {
-                  //       return MenuScreen();
-                  //     },
-                  //   ),
-                  // );
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return MenuScreen();
+                      },
+                    ),
+                  );
                 },
                 child: Image.asset(
                   'assets/icons/menuW.png',

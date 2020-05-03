@@ -13,6 +13,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   device_preview: ^0.4.4
   provider: ^4.0.5+1
+  flare_flutter: ^2.0.3
 
 dev_dependencies:
   flutter_test:
@@ -23,6 +24,7 @@ flutter:
 
   assets:
     - assets/icons/
+    - assets/flare/
 
   fonts:
     - family: Roboto
