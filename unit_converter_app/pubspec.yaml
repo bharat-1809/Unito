@@ -23,6 +23,7 @@ flutter:
 
   assets:
     - assets/icons/
+    - assets/data/units.json
 
   fonts:
     - family: Roboto

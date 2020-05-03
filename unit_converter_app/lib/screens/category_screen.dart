@@ -1,7 +1,10 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:unitconverterapp/component/category.dart';
 import 'package:unitconverterapp/component/category_tile.dart';
+import 'package:unitconverterapp/component/unit.dart';
+import 'package:unitconverterapp/screens/menu.dart';
 import 'package:unitconverterapp/theme/themeChanger.dart';
 import 'package:provider/provider.dart';
 import 'package:unitconverterapp/theme/themes.dart';
@@ -47,18 +50,38 @@ class _CategoryScreenState extends State<CategoryScreen> {
     'assets/icons/currency2.png',
   ];
 
-  /// Overides the build method and adds each [Category] to the
-  /// category list in initial state
   @override
-  void initState() {
-    super.initState();
-    for (var i = 0; i < _categoryNames.length; ++i) {
-      var category = Category(
-        iconLocation: _iconLocationLight[i],
-        name: _categoryNames[i],
-      );
-      _categories.add(category);
+  Future<void> didChangeDependencies() async {
+    super.didChangeDependencies();
+
+    if (_categories.isEmpty) {
+      await _retrieveLocalCategories();
     }
+  }
+
+  Future<void> _retrieveLocalCategories() async {
+    final json =
+        DefaultAssetBundle.of(context).loadString('assets/data/units.json');
+    final data = JsonDecoder().convert(await json);
+    if (data is! Map) {
+      throw ('Json is not a Map');
+    }
+    var categoryIndex = 0;
+    data.keys.forEach((key) {
+      final List<Unit> units =
+          data[key].map<Unit>((dynamic data) => Unit.fromJson(data)).toList();
+
+      var category = Category(
+          iconLocation: _iconLocationLight[categoryIndex],
+          name: _categoryNames[categoryIndex],
+          units: units);
+
+      setState(() {
+        _categories.add(category);
+      });
+
+      categoryIndex += 1;
+    });
   }
 
   @override
@@ -156,6 +179,13 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 highlightColor: Colors.transparent,
                 onPressed: () {
                   print('Height: $height || Width: $width');
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return MenuScreen();
+                      },
+                    ),
+                  );
                 },
                 child: getIcon(),
               ),

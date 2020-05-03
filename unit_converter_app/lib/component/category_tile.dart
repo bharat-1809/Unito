@@ -16,7 +16,6 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
     void _openConverterRoute(Category categoryUnit) {
       Navigator.of(context).push(MaterialPageRoute(builder: (context) {
         return UnitConverter(
@@ -47,7 +46,6 @@ class CategoryTile extends StatelessWidget {
           child: InkWell(
             onTap: () {
               _openConverterRoute(category);
-              print('Height: $height || Width: $width');
             },
             borderRadius: _borderRadius,
             splashColor: Theme.of(context).splashColor,

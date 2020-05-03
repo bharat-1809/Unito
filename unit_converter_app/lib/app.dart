@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:unitconverterapp/screens/category_screen.dart';
 import 'package:provider/provider.dart';
