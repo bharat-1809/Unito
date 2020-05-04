@@ -136,6 +136,8 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
           fontSize: 22,
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w400,
+          color: Theme.of(context).hoverColor,
+          shadows: [],
         );
     final _borderRadius = BorderRadius.circular(10);
     final _materialElevation = 2.0;

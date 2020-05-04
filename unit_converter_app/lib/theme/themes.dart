@@ -13,6 +13,8 @@ class AppTheme {
 
     /// Background Color of the category screen
     backgroundColor: Color(0xff3a375c),
+
+    /// Bg Color of UnitConverter fields and dropdowns
     primaryColor: Color.fromARGB(255, 40, 37, 90),
     canvasColor: Color(0xff3a376c),
 
@@ -32,7 +34,11 @@ class AppTheme {
     focusColor: Color.fromARGB(100, 80, 53, 232),
 
     /// [Gradient Color 2] for the background UI of UnitConverter Screen
+    /// Border Color of UnitConverter fields and dropdowns
     hintColor: Color.fromARGB(100, 154, 109, 252),
+
+    /// Color of the input fields and dropdown text
+    hoverColor: Color(0xff9479be),
 
     textTheme: ThemeData.dark().textTheme.copyWith(
           /// Theme for UNIT CONVERTER text
@@ -93,6 +99,8 @@ class AppTheme {
 
     /// Color for the Category tile
     buttonColor: Color(0xfffbfbfb),
+
+    /// Bg Color of UnitConverter fields and dropdowns
     primaryColor: Color(0xfffbfbfb),
 
     /// Canvas color of UnitConverter screen
@@ -114,7 +122,11 @@ class AppTheme {
     focusColor: Color(0xff5035e4),
 
     /// [Gradient Color 2] for the background UI of UnitConverter Screen
+    /// Border Color of UnitConverter fields and dropdowns
     hintColor: Color(0xff9a6dfc),
+
+    /// Color of the input fields and dropdown text
+    hoverColor: Color(0xff9479be),
 
     textTheme: ThemeData.light().textTheme.copyWith(
           /// Theme for UNIT CONVERTER text

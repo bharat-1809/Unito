@@ -42,7 +42,6 @@ class _UnitConverterState extends State<UnitConverter> {
         ),
         height: 0.612745098 * height,
         width: 0.7895884774 * width,
-        // TODO: Implement the input method for the unit conversion
         child: UnitConFgUI(
           units: widget.category.units,
         ),
