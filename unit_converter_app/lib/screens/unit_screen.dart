@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unitconverterapp/component/category.dart';
+import 'package:unitconverterapp/component/unitCon_Logic.dart';
 import 'package:unitconverterapp/component/unit_UI.dart';
 import 'package:unitconverterapp/screens/menu.dart';
 
@@ -26,11 +27,10 @@ class _UnitConverterState extends State<UnitConverter> {
     /// Contains the Dropdowns and Input container
     Widget unitInputContainer() {
       return Container(
-        margin: EdgeInsets.all(5.0),
         padding: EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
               color: Color.fromRGBO(46, 46, 46, 0.05),
@@ -43,6 +43,9 @@ class _UnitConverterState extends State<UnitConverter> {
         height: 0.612745098 * height,
         width: 0.7895884774 * width,
         // TODO: Implement the input method for the unit conversion
+        child: UnitConFgUI(
+          units: widget.category.units,
+        ),
       );
     }
 
@@ -162,7 +165,7 @@ class _UnitConverterState extends State<UnitConverter> {
               Expanded(
                 child: Stack(
                   children: <Widget>[
-                    UnitUI(),
+                    UnitBgUI(),
                     _topDesign(),
                   ],
                 ),

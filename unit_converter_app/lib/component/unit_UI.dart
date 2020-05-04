@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:unitconverterapp/component/unit.dart';
 
 /// Background UI Widget ( the design one )
-class UnitUI extends StatefulWidget {
-  const UnitUI();
+class UnitBgUI extends StatefulWidget {
+  const UnitBgUI();
   @override
-  _UnitUIState createState() => _UnitUIState();
+  _UnitBgUIState createState() => _UnitBgUIState();
 }
 
-class _UnitUIState extends State<UnitUI> {
+class _UnitBgUIState extends State<UnitBgUI> {
   @override
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width ,
+      width: MediaQuery.of(context).size.width,
       color: Theme.of(context).canvasColor,
       child: Center(
         child: ClipPath(

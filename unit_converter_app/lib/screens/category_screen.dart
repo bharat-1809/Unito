@@ -28,7 +28,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     'Volume',
     'Weight',
     'Data',
-    'Currency',
+    'Time',
   ];
 
   /// List of Category icon location
