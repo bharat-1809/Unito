@@ -11,7 +11,7 @@ class _MenuBgUIState extends State<MenuBgUI> {
   Widget build(BuildContext context) {
     final Size _size = Size(
       MediaQuery.of(context).size.width,
-      MediaQuery.of(context).size.height / 1.6,
+      MediaQuery.of(context).size.height / 1.57,
     );
     return Scaffold(
       body: Container(
