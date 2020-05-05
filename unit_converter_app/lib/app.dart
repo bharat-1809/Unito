@@ -10,8 +10,8 @@ class Home extends StatelessWidget {
     final theme = Provider.of<ThemeChanger>(context);
 
     return MaterialApp(
-      // locale: DevicePreview.of(context).locale,
-      // builder: DevicePreview.appBuilder,
+      locale: DevicePreview.of(context).locale,
+      builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       // darkTheme: appTheme.getDarkTheme(),
       theme: theme.themeData,

@@ -126,7 +126,7 @@ class AppTheme {
     hintColor: Color(0xff9a6dfc),
 
     /// Color of the input fields and dropdown text
-    hoverColor: Color(0xff9479be),
+    hoverColor: Color(0xffa079cf),
 
     textTheme: ThemeData.light().textTheme.copyWith(
           /// Theme for UNIT CONVERTER text

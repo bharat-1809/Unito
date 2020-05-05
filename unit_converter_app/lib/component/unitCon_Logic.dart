@@ -33,6 +33,9 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
       _setDefaults();
       _createDropdownItems();
     }
+    if (_inputValue != null) {
+      _updateConversion();
+    }
   }
 
   void _setDefaults() {
@@ -132,13 +135,16 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
 
   @override
   Widget build(BuildContext context) {
+    final _fontSize =
+        0.02445997458703939087 * MediaQuery.of(context).size.height;
+
     final _inputTextTheme = Theme.of(context).textTheme.headline.copyWith(
-          fontSize: 22,
-          fontFamily: 'Roboto',
-          fontWeight: FontWeight.w400,
-          color: Theme.of(context).hoverColor,
-          shadows: [],
-        );
+      fontSize: _fontSize,
+      fontFamily: 'Roboto',
+      fontWeight: FontWeight.w400,
+      color: Theme.of(context).hoverColor,
+      shadows: [],
+    );
     final _borderRadius = BorderRadius.circular(10);
     final _materialElevation = 2.0;
     final _materialShadowColor = Theme.of(context).hintColor;
@@ -176,7 +182,7 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
                 items: _dropdownItems,
                 onChanged: onChanged,
                 style: _inputTextTheme.copyWith(
-                  fontSize: 22,
+                  fontSize: _fontSize,
                   fontWeight: FontWeight.w400,
                   fontFamily: 'Roboto_Con',
                   shadows: [],
@@ -191,42 +197,50 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
     Widget _buildInputContainer() {
       return Container(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Material(
-                elevation: _materialElevation,
-                color: _materialColor,
-                shadowColor: _materialShadowColor,
-                borderRadius: _borderRadius,
-                child: Container(
-                  child: TextField(
-                    key: _inputKey,
-                    decoration: InputDecoration(
-                      labelText: 'Input',
-                      labelStyle: _inputTextTheme,
-                      focusedBorder: _outlineBorder,
-                      enabledBorder: _outlineBorder,
-                      contentPadding: EdgeInsets.all(20),
+              Expanded(
+                flex: 4,
+                child: Material(
+                  elevation: _materialElevation,
+                  color: _materialColor,
+                  shadowColor: _materialShadowColor,
+                  borderRadius: _borderRadius,
+                  child: Container(
+                    child: TextField(
+                      key: _inputKey,
+                      decoration: InputDecoration(
+                        labelText: 'Input',
+                        labelStyle: _inputTextTheme,
+                        focusedBorder: _outlineBorder,
+                        enabledBorder: _outlineBorder,
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                      ),
+                      cursorColor: Theme.of(context).focusColor,
+                      style: _inputTextTheme.copyWith(fontSize: _fontSize),
+                      keyboardType: TextInputType.number,
+                      onChanged: (newValue) {
+                        _updateInputVal(newValue);
+                      },
                     ),
-                    cursorColor: Theme.of(context).focusColor,
-                    style: _inputTextTheme.copyWith(fontSize: 22.0),
-                    keyboardType: TextInputType.number,
-                    onChanged: (newValue) {
-                      _updateInputVal(newValue);
-                    },
                   ),
                 ),
               ),
-              SizedBox(height: 26),
-              Material(
-                  elevation: _materialElevation,
-                  shadowColor: _materialShadowColor,
-                  color: _materialColor,
-                  borderRadius: _borderRadius,
-                  child: _buildUnitsDropdown(_fromUnit.name, _updateFromUnit)),
+              Expanded(flex: 2, child: SizedBox(height: 16.0)),
+              Expanded(
+                flex: 4,
+                child: Material(
+                    elevation: _materialElevation,
+                    shadowColor: _materialShadowColor,
+                    color: _materialColor,
+                    borderRadius: _borderRadius,
+                    child:
+                        _buildUnitsDropdown(_fromUnit.name, _updateFromUnit)),
+              ),
             ],
           ),
         ),
@@ -245,40 +259,47 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
 
     Widget _buildOutputContainer() {
       return Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
         child: Container(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Material(
-                elevation: _materialElevation,
-                color: _materialColor,
-                shadowColor: _materialShadowColor,
-                borderRadius: _borderRadius,
-                child: InputDecorator(
-                  textAlign: TextAlign.end,
-                  isFocused: false,
-                  child: Text(
-                    _convertedValue,
-                    style: _inputTextTheme,
-                  ),
-                  decoration: InputDecoration(
-                    labelText: 'Output',
-                    labelStyle: _inputTextTheme,
-                    enabledBorder: _outlineBorder,
-                    contentPadding: EdgeInsets.all(20.0),
-                  ),
-                ),
-              ),
-              SizedBox(height: 26),
-              Material(
+              Expanded(
+                flex: 4,
+                child: Material(
                   elevation: _materialElevation,
                   color: _materialColor,
                   shadowColor: _materialShadowColor,
                   borderRadius: _borderRadius,
-                  child: _buildUnitsDropdown(_toUnit.name, _updateToUnit)),
+                  child: InputDecorator(
+                    textAlign: TextAlign.end,
+                    isFocused: false,
+                    child: Text(
+                      _convertedValue,
+                      style: _inputTextTheme,
+                    ),
+                    decoration: InputDecoration(
+                      labelText: 'Output',
+                      labelStyle: _inputTextTheme,
+                      enabledBorder: _outlineBorder,
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(flex: 2, child: SizedBox(height: 15)),
+              Expanded(
+                flex: 4,
+                child: Material(
+                    elevation: _materialElevation,
+                    color: _materialColor,
+                    shadowColor: _materialShadowColor,
+                    borderRadius: _borderRadius,
+                    child: _buildUnitsDropdown(_toUnit.name, _updateToUnit)),
+              ),
             ],
           ),
         ),
