@@ -135,8 +135,9 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
 
   @override
   Widget build(BuildContext context) {
-    final _fontSize =
-        0.02445997458703939087 * MediaQuery.of(context).size.height;
+    final _height = MediaQuery.of(context).size.height;
+    final _width = MediaQuery.of(context).size.width;
+    final _fontSize = 0.02445997458703939087 * _height;
 
     final _inputTextTheme = Theme.of(context).textTheme.headline.copyWith(
       fontSize: _fontSize,
@@ -274,18 +275,22 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
                   shadowColor: _materialShadowColor,
                   borderRadius: _borderRadius,
                   child: InputDecorator(
-                    textAlign: TextAlign.end,
-                    isFocused: false,
-                    child: Text(
-                      _convertedValue,
-                      style: _inputTextTheme,
+                    child: Container(
+                      // height: 50,
+                      child: Text(
+                        _convertedValue,
+                        style: _inputTextTheme,
+                      ),
                     ),
                     decoration: InputDecoration(
                       labelText: 'Output',
                       labelStyle: _inputTextTheme,
                       enabledBorder: _outlineBorder,
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
+                      contentPadding: EdgeInsets.fromLTRB(
+                          0.02223634053367217351 * _height, // 20
+                          0.05203176620076239041 * _height, // 45
+                          0.02223634053367217351 * _height, // 20
+                          0), //0.00555908513341804338 * _height), //  5
                     ),
                   ),
                 ),
