@@ -9,7 +9,10 @@ class MenuBgUI extends StatefulWidget {
 class _MenuBgUIState extends State<MenuBgUI> {
   @override
   Widget build(BuildContext context) {
-    final Size _size = Size(MediaQuery.of(context).size.width, 400);
+    final Size _size = Size(
+      MediaQuery.of(context).size.width,
+      MediaQuery.of(context).size.height / 1.6,
+    );
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -94,8 +97,8 @@ class _WaveContainerState extends State<WaveContainer>
   @override
   void initState() {
     super.initState();
-    animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 1400));
+    animationController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1400));
     animationController.addListener(() {
       _sinePoints.clear();
       for (var i = -2; i < widget.size.width.toInt(); ++i) {
