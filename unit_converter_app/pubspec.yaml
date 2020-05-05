@@ -25,6 +25,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/data/units.json
+    - assets/images/
 
   fonts:
     - family: Roboto
@@ -36,3 +37,9 @@ flutter:
       fonts:
         - asset: assets/fonts/RobotoCondensed-Bold.ttf
         - asset: assets/fonts/RobotoCondensed-Regular.ttf
+    - family: Galada
+      fonts:
+        - asset: assets/fonts/Galada-Regular.ttf
+    - family: Pacifico
+      fonts:
+        - asset: assets/fonts/Pacifico-Regular.ttf
