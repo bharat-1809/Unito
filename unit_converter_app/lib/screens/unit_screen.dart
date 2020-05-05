@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:unitconverterapp/component/category.dart';
 import 'package:unitconverterapp/component/unitCon_Logic.dart';
 import 'package:unitconverterapp/component/unit_UI.dart';
@@ -87,13 +88,10 @@ class _UnitConverterState extends State<UnitConverter> {
                 padding: EdgeInsets.all(0),
                 onPressed: () {
                   print('Heigth: $height || Width: $width');
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return MenuScreen();
-                      },
-                    ),
-                  );
+                  Navigator.of(context).push(PageTransition(
+                    child: MenuScreen(),
+                    type: PageTransitionType.rightToLeftWithFade,
+                  ));
                 },
                 child: Image.asset(
                   'assets/icons/menuW.png',

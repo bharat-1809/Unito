@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:unitconverterapp/component/category.dart';
 import 'package:unitconverterapp/component/category_tile.dart';
 import 'package:unitconverterapp/component/unit.dart';
@@ -53,7 +54,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Future<void> didChangeDependencies() async {
     super.didChangeDependencies();
-
     if (_categories.isEmpty) {
       await _retrieveLocalCategories();
     }
@@ -179,13 +179,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 highlightColor: Colors.transparent,
                 onPressed: () {
                   print('Height: $height || Width: $width');
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return MenuScreen();
-                      },
-                    ),
-                  );
+                  Navigator.of(context).push(PageTransition(
+                    child: MenuScreen(),
+                    type: PageTransitionType.rightToLeftWithFade,
+                  ));
                 },
                 child: getIcon(),
               ),
