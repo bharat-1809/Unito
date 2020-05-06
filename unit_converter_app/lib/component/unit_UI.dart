@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:unitconverterapp/component/unit.dart';
 
 /// Background UI Widget ( the design one )
 class UnitBgUI extends StatefulWidget {
