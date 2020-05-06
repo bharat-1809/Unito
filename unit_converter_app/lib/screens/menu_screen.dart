@@ -2,6 +2,7 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:unitconverterapp/component/menuBgUI.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MenuScreen extends StatefulWidget {
   @override
@@ -9,8 +10,37 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
-  final bool _showNetworkError = false;
+  bool _showNetworkError = false;
   final _borderRadius = BorderRadius.circular(70);
+  TapGestureRecognizer _repoButton;
+
+  void _launchUrl(String url) async {
+    if (await canLaunch(url)) {
+      launch(url);
+    } else {
+      setState(() {
+        _showNetworkError = true;
+      });
+      throw ('Could Not Launch the URL');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _repoButton = TapGestureRecognizer()
+      ..onTap = () {
+        _launchUrl(
+          'https://github.com/bharat-1809/Unito',
+        );
+      };
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _repoButton.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -250,19 +280,28 @@ class _MenuScreenState extends State<MenuScreen> {
                                     _buildSocialButton(
                                       name: 'GitHub',
                                       iconLocation: 'assets/icons/github.png',
-                                      onClick: () {},
+                                      onClick: () {
+                                        _launchUrl(
+                                            'https://github.com/bharat-1809');
+                                      },
                                     ),
                                     SizedBox(width: 7),
                                     _buildSocialButton(
                                       name: 'Linkedin',
                                       iconLocation: 'assets/icons/linkedin.png',
-                                      onClick: () {},
+                                      onClick: () {
+                                        _launchUrl(
+                                            'https://linkedin.com/in/bharat-sharma-1809');
+                                      },
                                     ),
                                     SizedBox(width: 7),
                                     _buildSocialButton(
                                       name: 'Twitter',
                                       iconLocation: 'assets/icons/twitter.png',
-                                      onClick: () {},
+                                      onClick: () {
+                                        _launchUrl(
+                                            'https://twitter.com/_sifrant');
+                                      },
                                     ),
                                   ],
                                 ),
@@ -274,7 +313,10 @@ class _MenuScreenState extends State<MenuScreen> {
                                     _buildSocialButton(
                                       name: ' Email',
                                       iconLocation: 'assets/icons/gmail.png',
-                                      onClick: () {},
+                                      onClick: () {
+                                        _launchUrl(
+                                            'mailto:bharat.sharma1809@gmail.com?subject=User Experience@Unito');
+                                      },
                                     )
                                   ],
                                 ),
@@ -304,7 +346,7 @@ class _MenuScreenState extends State<MenuScreen> {
                                                 ),
                                             children: [
                                               TextSpan(
-                                                text: 'GitHub Repo',
+                                                text: 'GitHub Repo Here',
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .headline
@@ -313,8 +355,7 @@ class _MenuScreenState extends State<MenuScreen> {
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
-                                                recognizer:
-                                                    TapGestureRecognizer(),
+                                                recognizer: _repoButton,
                                                 children: [
                                                   TextSpan(
                                                     text: '  </>',
