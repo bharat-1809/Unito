@@ -96,7 +96,6 @@ class AppTheme {
           ),
         ),
   );
-  //TODO: Add other theme properties
 
   /// Sets the Light Theme
   ThemeData _lightTheme = ThemeData.light().copyWith(
