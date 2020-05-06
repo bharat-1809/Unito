@@ -116,7 +116,7 @@ class _UnitConverterState extends State<UnitConverter> {
                 widget.category.name,
                 style: Theme.of(context)
                     .textTheme
-                    .title
+                    .headline6
                     .copyWith(fontSize: 0.05826175349428208584 * height),
               ),
               SizedBox(width: 0.03281249999999999909 * width),

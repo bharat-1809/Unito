@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unitconverterapp/component/errorUI.dart';
 import 'package:unitconverterapp/component/unit.dart';
 
 class UnitConFgUI extends StatefulWidget {
@@ -136,10 +137,9 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
-    final _width = MediaQuery.of(context).size.width;
     final _fontSize = 0.02445997458703939087 * _height;
 
-    final _inputTextTheme = Theme.of(context).textTheme.headline.copyWith(
+    final _inputTextTheme = Theme.of(context).textTheme.headline5.copyWith(
       fontSize: _fontSize,
       fontFamily: 'Roboto',
       fontWeight: FontWeight.w400,
@@ -311,14 +311,31 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
       );
     }
 
-    return Column(
-      // mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Expanded(flex: 3, child: _buildInputContainer()),
-        Expanded(flex: 1, child: _buildArrows()),
-        Expanded(flex: 3, child: _buildOutputContainer()),
-      ],
-    );
+    Widget _buildScreen() {
+      if (_showValidationError) {
+        return ErrorUI(
+            errorText: 'Invalid: Not a Valid Format',
+            fontSize: 14,
+            spacerWidth: 65,
+            onPressed: () {
+              setState(() {
+                _showValidationError = false;
+                _updateInputVal(null);
+              });
+            });
+      } else {
+        return Column(
+          // mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(flex: 3, child: _buildInputContainer()),
+            Expanded(flex: 1, child: _buildArrows()),
+            Expanded(flex: 3, child: _buildOutputContainer()),
+          ],
+        );
+      }
+    }
+
+    return _buildScreen();
   }
 }

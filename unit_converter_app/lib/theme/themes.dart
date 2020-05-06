@@ -31,7 +31,7 @@ class AppTheme {
     highlightColor: Color(0xffac8ae8),
 
     /// [Gradient Color 1] for the background UI of UnitConverter Screen
-    focusColor: Color.fromARGB(100, 80, 53, 232),
+    focusColor: Color.fromARGB(150, 80, 53, 232),
 
     /// [Gradient Color 2] for the background UI of UnitConverter Screen
     /// Border Color of UnitConverter fields and dropdowns
@@ -42,7 +42,7 @@ class AppTheme {
 
     textTheme: ThemeData.dark().textTheme.copyWith(
           /// Theme for UNIT CONVERTER text
-          headline: TextStyle(
+          headline5: TextStyle(
             fontFamily: 'Roboto_Con',
             fontSize: 50,
             fontWeight: FontWeight.bold,
@@ -57,7 +57,7 @@ class AppTheme {
           ),
 
           /// Category name in the Unit Converter screen
-          title: TextStyle(
+          headline6: TextStyle(
             fontFamily: 'Roboto_Con',
             fontSize: 56,
             fontWeight: FontWeight.bold,
@@ -80,11 +80,19 @@ class AppTheme {
           ),
 
           /// 'Select a Category' text
-          subhead: TextStyle(
+          subtitle1: TextStyle(
             fontFamily: 'Roboto',
             fontWeight: FontWeight.w700,
             fontSize: 17,
             color: Color(0xff7565c8),
+          ),
+
+          /// Error Text
+          bodyText1: TextStyle(
+            fontFamily: 'SourceSans',
+            fontSize: 16,
+            color: Colors.red[700],
+            fontWeight: FontWeight.w600,
           ),
         ),
   );
@@ -130,7 +138,7 @@ class AppTheme {
 
     textTheme: ThemeData.light().textTheme.copyWith(
           /// Theme for UNIT CONVERTER text
-          headline: TextStyle(
+          headline5: TextStyle(
             fontFamily: 'Roboto_Con',
             fontSize: 50,
             fontWeight: FontWeight.bold,
@@ -145,7 +153,7 @@ class AppTheme {
           ),
 
           /// Category name in the Unit Converter screen
-          title: TextStyle(
+          headline6: TextStyle(
             fontFamily: 'Roboto_Con',
             fontSize: 56,
             fontWeight: FontWeight.bold,
@@ -168,11 +176,19 @@ class AppTheme {
           ),
 
           /// 'Select a Category' text
-          subhead: TextStyle(
+          subtitle1: TextStyle(
             fontFamily: 'Roboto',
             fontWeight: FontWeight.w700,
             fontSize: 17,
             color: Color(0xff7655c8),
+          ),
+
+          /// Error Text
+          bodyText1: TextStyle(
+            fontFamily: 'SourceSans',
+            fontSize: 16,
+            color: Colors.red[700],
+            fontWeight: FontWeight.w600,
           ),
         ),
   );

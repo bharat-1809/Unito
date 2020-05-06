@@ -203,14 +203,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     "Unit",
                     style: Theme.of(context)
                         .textTheme
-                        .headline
+                        .headline5
                         .copyWith(fontSize: 0.05559085133418043379 * height),
                   ),
                   Text(
                     "Converter",
                     style: Theme.of(context)
                         .textTheme
-                        .headline
+                        .headline5
                         .copyWith(fontSize: 0.05559085133418043379 * height),
                   ),
                 ],
@@ -234,7 +234,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 "Select a Category",
                 style: Theme.of(context)
                     .textTheme
-                    .subhead
+                    .subtitle1
                     .copyWith(fontSize: 0.01890088945362134749 * height),
               ),
             ),

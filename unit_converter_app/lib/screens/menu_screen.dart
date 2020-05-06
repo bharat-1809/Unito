@@ -1,8 +1,11 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:unitconverterapp/component/errorUI.dart';
 import 'package:unitconverterapp/component/menuBgUI.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:data_connection_checker/data_connection_checker.dart';
 
 class MenuScreen extends StatefulWidget {
   @override
@@ -15,7 +18,8 @@ class _MenuScreenState extends State<MenuScreen> {
   TapGestureRecognizer _repoButton;
 
   void _launchUrl(String url) async {
-    if (await canLaunch(url)) {
+    if (await canLaunch(url) && await _checkConnection()) {
+      _checkConnection();
       launch(url);
     } else {
       setState(() {
@@ -25,11 +29,26 @@ class _MenuScreenState extends State<MenuScreen> {
     }
   }
 
+  Future<bool> _checkConnection() async {
+    if (await DataConnectionChecker().hasConnection) {
+      setState(() {
+        _showNetworkError = false;
+      });
+      return true;
+    } else {
+      setState(() {
+        _showNetworkError = true;
+      });
+      return false;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     _repoButton = TapGestureRecognizer()
       ..onTap = () {
+        HapticFeedback.heavyImpact();
         _launchUrl(
           'https://github.com/bharat-1809/Unito',
         );
@@ -46,7 +65,7 @@ class _MenuScreenState extends State<MenuScreen> {
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height * 0.96;
     final _width = MediaQuery.of(context).size.width;
-    final _infoTextStyle = Theme.of(context).textTheme.title.copyWith(
+    final _infoTextStyle = Theme.of(context).textTheme.headline6.copyWith(
           fontSize: 0.0190 * _height,
           fontWeight: FontWeight.w500,
           fontFamily: 'SourceSans',
@@ -118,7 +137,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   SizedBox(height: _height / 40),
                   Text(
                     'DEVELOPER',
-                    style: Theme.of(context).textTheme.title.copyWith(
+                    style: Theme.of(context).textTheme.headline6.copyWith(
                           fontSize: 0.0178 * _height,
                           fontWeight: FontWeight.w600,
                         ),
@@ -146,14 +165,14 @@ class _MenuScreenState extends State<MenuScreen> {
                   Text(
                     'Bharat Sharma',
                     softWrap: true,
-                    style: Theme.of(context).textTheme.title.copyWith(
+                    style: Theme.of(context).textTheme.headline6.copyWith(
                           fontSize: 0.040 * _height,
                           fontFamily: 'Pacifico',
                         ),
                   ),
                   Text(
                     'Flutter Developer',
-                    style: Theme.of(context).textTheme.title.copyWith(
+                    style: Theme.of(context).textTheme.headline6.copyWith(
                           fontSize: 0.020 * _height,
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.w300,
@@ -217,7 +236,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 flex: 10,
                 child: Text(
                   name,
-                  style: Theme.of(context).textTheme.headline.copyWith(
+                  style: Theme.of(context).textTheme.headline5.copyWith(
                         fontSize: 0.018 * _height,
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
@@ -231,164 +250,175 @@ class _MenuScreenState extends State<MenuScreen> {
       );
     }
 
+    Widget _buildScreen() {
+      if (_showNetworkError) {
+        return ErrorUI(
+            errorText: 'Error: Couldn\'t connect to internet',
+            onPressed: () {
+              _checkConnection();
+            });
+      } else {
+        return SingleChildScrollView(
+          child: Container(
+            height: _height,
+            width: _width,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  child: Stack(
+                    children: <Widget>[
+                      MenuBgUI(),
+                      _buildMenuContent(),
+                      Positioned(
+                        left: _width / 2.13,
+                        top: _height / 1.32,
+                        child: _buildFlareMinion(),
+                      ),
+                      Positioned(
+                        top: _height / 1.5,
+                        width: _width,
+                        child: Container(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Text(
+                                'Connect With Me On',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline5
+                                    .copyWith(
+                                      fontSize: _height * 0.025,
+                                    ),
+                              ),
+                              SizedBox(height: 20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  _buildSocialButton(
+                                    name: 'GitHub',
+                                    iconLocation: 'assets/icons/github.png',
+                                    onClick: () {
+                                      _launchUrl(
+                                          'https://github.com/bharat-1809');
+                                    },
+                                  ),
+                                  SizedBox(width: 7),
+                                  _buildSocialButton(
+                                    name: 'Linkedin',
+                                    iconLocation: 'assets/icons/linkedin.png',
+                                    onClick: () {
+                                      _launchUrl(
+                                          'https://linkedin.com/in/bharat-sharma-1809');
+                                    },
+                                  ),
+                                  SizedBox(width: 7),
+                                  _buildSocialButton(
+                                    name: 'Twitter',
+                                    iconLocation: 'assets/icons/twitter.png',
+                                    onClick: () {
+                                      _launchUrl(
+                                          'https://twitter.com/_sifrant');
+                                    },
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 7.0),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  _buildSocialButton(
+                                    name: ' Email',
+                                    iconLocation: 'assets/icons/gmail.png',
+                                    onClick: () {
+                                      _launchUrl(
+                                          'mailto:bharat.sharma1809@gmail.com?subject=User Experience@Unito');
+                                    },
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: _height / 18),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  SizedBox(width: _width / 15),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0,
+                                      vertical: 8.0,
+                                    ),
+                                    child: Container(
+                                      width: _width / 2,
+                                      child: RichText(
+                                        text: TextSpan(
+                                          text:
+                                              '</>  To see the source code please visit the ',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline5
+                                              .copyWith(
+                                                fontSize: _height * 0.015,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                          children: [
+                                            TextSpan(
+                                              text: ' GitHub Repo Here',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline5
+                                                  .copyWith(
+                                                    fontSize: _height * 0.016,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                              recognizer: _repoButton,
+                                              children: [
+                                                TextSpan(
+                                                  text: '  </>',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline5
+                                                      .copyWith(
+                                                        fontSize:
+                                                            _height * 0.015,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      }
+    }
+
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       body: Container(
         color: Theme.of(context).focusColor,
         child: SafeArea(
           bottom: false,
-          child: SingleChildScrollView(
-            child: Container(
-              height: _height,
-              width: _width,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Expanded(
-                    child: Stack(
-                      children: <Widget>[
-                        MenuBgUI(),
-                        _buildMenuContent(),
-                        Positioned(
-                          left: _width / 2.13,
-                          top: _height / 1.32,
-                          child: _buildFlareMinion(),
-                        ),
-                        Positioned(
-                          top: _height / 1.5,
-                          width: _width,
-                          child: Container(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                Text(
-                                  'Connect With Me On',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline
-                                      .copyWith(
-                                        fontSize: _height * 0.025,
-                                      ),
-                                ),
-                                SizedBox(height: 20),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    _buildSocialButton(
-                                      name: 'GitHub',
-                                      iconLocation: 'assets/icons/github.png',
-                                      onClick: () {
-                                        _launchUrl(
-                                            'https://github.com/bharat-1809');
-                                      },
-                                    ),
-                                    SizedBox(width: 7),
-                                    _buildSocialButton(
-                                      name: 'Linkedin',
-                                      iconLocation: 'assets/icons/linkedin.png',
-                                      onClick: () {
-                                        _launchUrl(
-                                            'https://linkedin.com/in/bharat-sharma-1809');
-                                      },
-                                    ),
-                                    SizedBox(width: 7),
-                                    _buildSocialButton(
-                                      name: 'Twitter',
-                                      iconLocation: 'assets/icons/twitter.png',
-                                      onClick: () {
-                                        _launchUrl(
-                                            'https://twitter.com/_sifrant');
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 7.0),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    _buildSocialButton(
-                                      name: ' Email',
-                                      iconLocation: 'assets/icons/gmail.png',
-                                      onClick: () {
-                                        _launchUrl(
-                                            'mailto:bharat.sharma1809@gmail.com?subject=User Experience@Unito');
-                                      },
-                                    )
-                                  ],
-                                ),
-                                SizedBox(height: _height / 20),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: <Widget>[
-                                    SizedBox(width: _width / 10),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0,
-                                        vertical: 8.0,
-                                      ),
-                                      child: Container(
-                                        width: _width / 2,
-                                        child: RichText(
-                                          text: TextSpan(
-                                            text:
-                                                '</>  To see the source code please visit the ',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline
-                                                .copyWith(
-                                                  fontSize: _height * 0.015,
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                            children: [
-                                              TextSpan(
-                                                text: 'GitHub Repo Here',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headline
-                                                    .copyWith(
-                                                      fontSize: _height * 0.015,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                recognizer: _repoButton,
-                                                children: [
-                                                  TextSpan(
-                                                    text: '  </>',
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline
-                                                        .copyWith(
-                                                          fontSize:
-                                                              _height * 0.015,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          child: _buildScreen(),
         ),
       ),
     );
