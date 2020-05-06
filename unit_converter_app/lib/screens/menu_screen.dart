@@ -158,7 +158,7 @@ class _MenuScreenState extends State<MenuScreen> {
           highlightColor: Theme.of(context).highlightColor,
           onPressed: onClick,
           elevation: 2.5,
-          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 15.0),
+          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
           shape: RoundedRectangleBorder(
             borderRadius: _borderRadius,
           ),
@@ -166,20 +166,27 @@ class _MenuScreenState extends State<MenuScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Container(
-                width: 25,
-                height: 25,
-                child: Image.asset(iconLocation, fit: BoxFit.contain),
+              Expanded(flex: 1, child: SizedBox(width: 5)),
+              Expanded(
+                flex: 4,
+                child: Container(
+                  width: 23,
+                  height: 23,
+                  child: Image.asset(iconLocation, fit: BoxFit.contain),
+                ),
               ),
-              SizedBox(width: 7.5),
-              Text(
-                name,
-                style: Theme.of(context).textTheme.headline.copyWith(
-                      fontSize: 15,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'SourceSans',
-                    ),
+              Expanded(flex: 2, child: SizedBox(width: 7.5)),
+              Expanded(
+                flex: 10,
+                child: Text(
+                  name,
+                  style: Theme.of(context).textTheme.headline.copyWith(
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'SourceSans',
+                      ),
+                ),
               ),
             ],
           ),
@@ -191,140 +198,145 @@ class _MenuScreenState extends State<MenuScreen> {
       body: Container(
         color: Theme.of(context).focusColor,
         child: SafeArea(
-          child: Container(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Expanded(
-                  child: Stack(
-                    children: <Widget>[
-                      MenuBgUI(),
-                      _buildMenuContent(),
-                      Positioned(
-                        left: _width / 2.17,
-                        top: _height / 1.36,
-                        child: _buildFlareMinion(),
-                      ),
-                      Positioned(
-                        top: _height / 1.5,
-                        width: _width,
-                        child: Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Text(
-                                'Connect With Me On',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline
-                                    .copyWith(
-                                      fontSize: _height * 0.025,
+          child: SingleChildScrollView(
+            child: Container(
+              height: _height,
+              width: _width,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Expanded(
+                    child: Stack(
+                      children: <Widget>[
+                        MenuBgUI(),
+                        _buildMenuContent(),
+                        Positioned(
+                          left: _width / 2.15,
+                          top: _height / 1.36,
+                          child: _buildFlareMinion(),
+                        ),
+                        Positioned(
+                          top: _height / 1.5,
+                          width: _width,
+                          child: Container(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Text(
+                                  'Connect With Me On',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline
+                                      .copyWith(
+                                        fontSize: _height * 0.025,
+                                      ),
+                                ),
+                                SizedBox(height: 20),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    _buildSocialButton(
+                                      name: 'GitHub',
+                                      iconLocation: 'assets/icons/github.png',
+                                      onClick: () {},
                                     ),
-                              ),
-                              SizedBox(height: 20),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  _buildSocialButton(
-                                    name: 'GitHub',
-                                    iconLocation: 'assets/icons/github.png',
-                                    onClick: () {},
-                                  ),
-                                  SizedBox(width: 7),
-                                  _buildSocialButton(
-                                    name: 'Linkedin',
-                                    iconLocation: 'assets/icons/linkedin.png',
-                                    onClick: () {},
-                                  ),
-                                  SizedBox(width: 7),
-                                  _buildSocialButton(
-                                    name: 'Twitter',
-                                    iconLocation: 'assets/icons/twitter.png',
-                                    onClick: () {},
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 7.0),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  _buildSocialButton(
-                                    name: 'Email',
-                                    iconLocation: 'assets/icons/gmail.png',
-                                    onClick: () {},
-                                  )
-                                ],
-                              ),
-                              SizedBox(height: _height / 20),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  SizedBox(width: _width / 10),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 10.0,
-                                      vertical: 8.0,
+                                    SizedBox(width: 7),
+                                    _buildSocialButton(
+                                      name: 'Linkedin',
+                                      iconLocation: 'assets/icons/linkedin.png',
+                                      onClick: () {},
                                     ),
-                                    child: Container(
-                                      width: _width / 2,
-                                      child: RichText(
-                                        text: TextSpan(
-                                          text:
-                                              '</>  To see the source code please visit the ',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline
-                                              .copyWith(
-                                                fontSize: _height * 0.015,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                          children: [
-                                            TextSpan(
-                                              text: 'GitHub Repo',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline
-                                                  .copyWith(
-                                                    fontSize: _height * 0.015,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                              recognizer:
-                                                  TapGestureRecognizer(),
-                                              children: [
-                                                TextSpan(
-                                                  text: '  </>',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline
-                                                      .copyWith(
-                                                        fontSize:
-                                                            _height * 0.015,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                      ),
+                                    SizedBox(width: 7),
+                                    _buildSocialButton(
+                                      name: 'Twitter',
+                                      iconLocation: 'assets/icons/twitter.png',
+                                      onClick: () {},
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 7.0),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    _buildSocialButton(
+                                      name: ' Email',
+                                      iconLocation: 'assets/icons/gmail.png',
+                                      onClick: () {},
+                                    )
+                                  ],
+                                ),
+                                SizedBox(height: _height / 20),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    SizedBox(width: _width / 10),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 10.0,
+                                        vertical: 8.0,
+                                      ),
+                                      child: Container(
+                                        width: _width / 2,
+                                        child: RichText(
+                                          text: TextSpan(
+                                            text:
+                                                '</>  To see the source code please visit the ',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline
+                                                .copyWith(
+                                                  fontSize: _height * 0.015,
+                                                  fontWeight: FontWeight.w400,
                                                 ),
-                                              ],
-                                            ),
-                                          ],
+                                            children: [
+                                              TextSpan(
+                                                text: 'GitHub Repo',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline
+                                                    .copyWith(
+                                                      fontSize: _height * 0.015,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                recognizer:
+                                                    TapGestureRecognizer(),
+                                                children: [
+                                                  TextSpan(
+                                                    text: '  </>',
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline
+                                                        .copyWith(
+                                                          fontSize:
+                                                              _height * 0.015,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
