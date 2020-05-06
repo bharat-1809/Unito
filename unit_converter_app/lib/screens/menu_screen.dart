@@ -14,7 +14,7 @@ class _MenuScreenState extends State<MenuScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _height = MediaQuery.of(context).size.height;
+    final _height = MediaQuery.of(context).size.height * 0.96;
     final _width = MediaQuery.of(context).size.width;
     final _infoTextStyle = Theme.of(context).textTheme.title.copyWith(
           fontSize: 0.0190 * _height,
@@ -28,105 +28,112 @@ class _MenuScreenState extends State<MenuScreen> {
         width: _width,
         color: Colors.transparent,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            SizedBox(
-              height: _height / 60,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(width: _height / 50),
-                IconButton(
-                  highlightColor: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  icon: Icon(
-                    Icons.arrow_back,
-                    size: 0.03335451080050826027 * _height,
-                    color: Colors.white,
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(
+                    height: _height / 60,
                   ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            ),
-            SizedBox(height: _width / 120),
-            Container(
-              width: _width / 1.2,
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                children: [
-                  RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        text: 'Unito ',
-                        style: _infoTextStyle.copyWith(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 0.0210 * _height,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(width: _height / 50),
+                      IconButton(
+                        highlightColor: Colors.transparent,
+                        splashColor: Colors.transparent,
+                        icon: Icon(
+                          Icons.arrow_back,
+                          size: 0.03335451080050826027 * _height,
+                          color: Colors.white,
                         ),
-                        children: [
-                          TextSpan(
-                            text:
-                                ' is a casual utility app, that shows the implementation of modern minimalistic UI in ',
-                            style: _infoTextStyle,
-                          ),
-                          TextSpan(
-                            text: 'Flutter',
-                            style: _infoTextStyle.copyWith(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: _width / 120),
+                  Container(
+                    width: _width / 1.2,
+                    child: Wrap(
+                      alignment: WrapAlignment.center,
+                      children: [
+                        RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              text: 'Unito ',
+                              style: _infoTextStyle.copyWith(
+                                fontWeight: FontWeight.w800,
                                 fontSize: 0.0210 * _height,
-                                fontWeight: FontWeight.w800),
-                          ),
-                        ],
-                      )),
+                              ),
+                              children: [
+                                TextSpan(
+                                  text:
+                                      ' is a casual utility app, that shows the implementation of modern minimalistic UI in ',
+                                  style: _infoTextStyle,
+                                ),
+                                TextSpan(
+                                  text: 'Flutter',
+                                  style: _infoTextStyle.copyWith(
+                                      fontSize: 0.0210 * _height,
+                                      fontWeight: FontWeight.w800),
+                                ),
+                              ],
+                            )),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: _height / 40),
+                  Text(
+                    'DEVELOPER',
+                    style: Theme.of(context).textTheme.title.copyWith(
+                          fontSize: 0.0178 * _height,
+                          fontWeight: FontWeight.w600,
+                        ),
+                  ),
+                  SizedBox(height: _height / 30),
+                  Material(
+                    elevation: 10,
+                    borderRadius: BorderRadius.circular(100),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        border: Border.all(
+                          width: 4.0,
+                          color: Theme.of(context).canvasColor,
+                        ),
+                      ),
+                      child: CircleAvatar(
+                        backgroundImage: NetworkImage(
+                            'https://avatars0.githubusercontent.com/u/58745044?s=400&u=83b2992abc9f6bb61e0a9f571e9e0e178d622950&v=4'),
+                        radius: (_height / _width) * 28,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: _height / 40),
+                  Text(
+                    'Bharat Sharma',
+                    softWrap: true,
+                    style: Theme.of(context).textTheme.title.copyWith(
+                          fontSize: 0.040 * _height,
+                          fontFamily: 'Pacifico',
+                        ),
+                  ),
+                  Text(
+                    'Flutter Developer',
+                    style: Theme.of(context).textTheme.title.copyWith(
+                          fontSize: 0.020 * _height,
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.w300,
+                          letterSpacing: 1.8,
+                        ),
+                    softWrap: true,
+                  ),
+                  SizedBox(height: 4),
                 ],
               ),
-            ),
-            SizedBox(height: _height / 40),
-            Text(
-              'DEVELOPER',
-              style: Theme.of(context).textTheme.title.copyWith(
-                    fontSize: 0.0178 * _height,
-                    fontWeight: FontWeight.w600,
-                  ),
-            ),
-            SizedBox(height: _height / 30),
-            Material(
-              elevation: 10,
-              borderRadius: BorderRadius.circular(100),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  border: Border.all(
-                    width: 4.0,
-                    color: Theme.of(context).canvasColor,
-                  ),
-                ),
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'https://avatars0.githubusercontent.com/u/58745044?s=400&u=83b2992abc9f6bb61e0a9f571e9e0e178d622950&v=4'),
-                  radius: (_height / _width) * 28,
-                ),
-              ),
-            ),
-            SizedBox(height: _height / 40),
-            Text(
-              'Bharat Sharma',
-              softWrap: true,
-              style: Theme.of(context).textTheme.title.copyWith(
-                    fontSize: 0.040 * _height,
-                    fontFamily: 'Pacifico',
-                  ),
-            ),
-            Text(
-              'Flutter Developer',
-              style: Theme.of(context).textTheme.title.copyWith(
-                    fontSize: 0.020 * _height,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w300,
-                    letterSpacing: 1.8,
-                  ),
-              softWrap: true,
             ),
           ],
         ),
@@ -181,7 +188,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 child: Text(
                   name,
                   style: Theme.of(context).textTheme.headline.copyWith(
-                        fontSize: 14,
+                        fontSize: 0.018 * _height,
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
                         fontFamily: 'SourceSans',
@@ -195,9 +202,11 @@ class _MenuScreenState extends State<MenuScreen> {
     }
 
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: Container(
         color: Theme.of(context).focusColor,
         child: SafeArea(
+          bottom: false,
           child: SingleChildScrollView(
             child: Container(
               height: _height,
@@ -211,8 +220,8 @@ class _MenuScreenState extends State<MenuScreen> {
                         MenuBgUI(),
                         _buildMenuContent(),
                         Positioned(
-                          left: _width / 2.15,
-                          top: _height / 1.36,
+                          left: _width / 2.13,
+                          top: _height / 1.32,
                           child: _buildFlareMinion(),
                         ),
                         Positioned(

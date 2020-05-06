@@ -5,10 +5,10 @@ import 'package:device_preview/device_preview.dart';
 import 'package:unitconverterapp/theme/themeChanger.dart';
 
 void main() => runApp(
-      // UnitConverterApp(),
-      DevicePreview(
-        builder: (context) => UnitConverterApp(),
-      ),
+      UnitConverterApp(),
+      // DevicePreview(
+      //   builder: (context) => UnitConverterApp(),
+      // ),
     );
 
 /// Unit Converter App.
