@@ -39,7 +39,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     'assets/icons/volume1.png',
     'assets/icons/weight1.png',
     'assets/icons/data1.png',
-    'assets/icons/currency1.png',
+    'assets/icons/time1.png',
   ];
 
   final _iconLocationDark = <String>[
@@ -48,7 +48,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     'assets/icons/volume2.png',
     'assets/icons/weight2.png',
     'assets/icons/data2.png',
-    'assets/icons/currency2.png',
+    'assets/icons/time2.png',
   ];
 
   @override

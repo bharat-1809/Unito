@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:unitconverterapp/screens/category_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:unitconverterapp/screens/splash_screen.dart';
 import 'theme/themeChanger.dart';
 
 class Home extends StatelessWidget {
@@ -16,7 +17,10 @@ class Home extends StatelessWidget {
       // darkTheme: appTheme.getDarkTheme(),
       theme: theme.themeData,
       title: 'Unit Converter',
-      home: CategoryScreen(),
+      home: SplashScreen(),
+      routes: <String, WidgetBuilder>{
+        '/CategoryScreen': (BuildContext context) => CategoryScreen()
+      },
     );
   }
 }
