@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unitconverterapp/component/unit.dart';
 
-/// A class containing [Category] name and iconLocation
+/// A class containing [Category] name, iconLocation, and List if corresponding units 
 class Category {
   String iconLocation;
   final String name;

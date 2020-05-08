@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:unitconverterapp/screens/splash_screen.dart';
 import 'theme/themeChanger.dart';
 
+/// Contains the MaterialApp widget
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

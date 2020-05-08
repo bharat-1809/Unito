@@ -1,6 +1,7 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 
+/// Error Dialog Box
 class ErrorUI extends StatefulWidget {
   final String errorText;
   final VoidCallback onPressed;
