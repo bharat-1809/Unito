@@ -11,7 +11,6 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^0.1.2
-  device_preview: ^0.4.4
   provider: ^4.0.5+1
   page_transition: ^1.1.5
   flare_flutter: ^2.0.3
