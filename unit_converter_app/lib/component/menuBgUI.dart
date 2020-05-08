@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
+/// Background UI of the [MenuScreen]
 class MenuBgUI extends StatefulWidget {
   @override
   _MenuBgUIState createState() => _MenuBgUIState();
@@ -65,6 +66,7 @@ class _MenuBgUIState extends State<MenuBgUI> {
   }
 }
 
+/// Paints the animated wave widget in the [MenuScreen]
 class WaveContainer extends StatefulWidget {
   final Size size;
   final Color color;
@@ -148,6 +150,7 @@ class _WaveContainerState extends State<WaveContainer>
   }
 }
 
+/// Custom clipper
 class SineClipper extends CustomClipper<Path> {
   final double animation;
   final List<Offset> sinePoints;

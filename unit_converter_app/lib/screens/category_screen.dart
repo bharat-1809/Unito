@@ -33,6 +33,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
   ];
 
   /// List of Category icon location
+  ///
+  /// Light
   final _iconLocationLight = <String>[
     'assets/icons/length1.png',
     'assets/icons/area1.png',
@@ -42,6 +44,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     'assets/icons/time1.png',
   ];
 
+  /// Dark
   final _iconLocationDark = <String>[
     'assets/icons/length2.png',
     'assets/icons/area2.png',
@@ -59,6 +62,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     }
   }
 
+  /// This method parses JSON file and add to the categories list
   Future<void> _retrieveLocalCategories() async {
     final json =
         DefaultAssetBundle.of(context).loadString('assets/data/units.json');

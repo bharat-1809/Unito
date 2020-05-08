@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:unitconverterapp/component/errorUI.dart';
 import 'package:unitconverterapp/component/unit.dart';
 
+/// The Unitconverter main logic and some UI
 class UnitConFgUI extends StatefulWidget {
   final List<Unit> units;
   UnitConFgUI({Key key, @required this.units})
@@ -20,6 +21,7 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
   bool _showValidationError = false;
   final _inputKey = GlobalKey(debugLabel: 'inputText');
 
+  /// Overrides the initState method and calls [_setDefauts] and [_createDropdownItems] methods
   @override
   void initState() {
     super.initState();
@@ -39,6 +41,7 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
     }
   }
 
+  /// Sets the default value of [_fromUnit] and [_toUnit]
   void _setDefaults() {
     setState(() {
       _fromUnit = widget.units[0];
@@ -49,6 +52,7 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
     });
   }
 
+  /// Creates the dropdowns of the Unit converter
   void _createDropdownItems() {
     var newItems = <DropdownMenuItem>[];
     for (var unit in widget.units) {
@@ -67,6 +71,7 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
     });
   }
 
+  /// Formats the result (Eg: 121.00000 => 121, 121.12000 => 121.12, etc)
   String _format(double value) {
     var _outputVal = value.toStringAsPrecision(8);
     if (_outputVal.contains('.') && _outputVal.endsWith('0')) {
@@ -82,6 +87,7 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
     return _outputVal;
   }
 
+  /// Updates the conversion and returns the converted value
   Future<void> _updateConversion() async {
     setState(() {
       _convertedValue =
@@ -89,6 +95,7 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
     });
   }
 
+  /// Updates the input value and checks whether the input is in correct format or not
   void _updateInputVal(String value) {
     setState(() {
       if (value == null || value.isEmpty) {
@@ -107,6 +114,7 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
     });
   }
 
+  /// Used as a getter method to get the required unit from the list of the given units
   Unit _getUnit(dynamic unitName) {
     return widget.units.firstWhere(
       (Unit unit) {
@@ -116,6 +124,7 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
     );
   }
 
+  /// Updates the [_fromUnit]
   void _updateFromUnit(dynamic unitName) {
     setState(() {
       _fromUnit = _getUnit(unitName);
@@ -125,6 +134,7 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
     }
   }
 
+  /// Updates the [_toUnit]
   void _updateToUnit(dynamic unitName) {
     setState(() {
       _toUnit = _getUnit(unitName);
@@ -159,6 +169,7 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
       ),
     );
 
+    /// Reusable widget to build the dropdowns
     Widget _buildUnitsDropdown(
         String currentValue, ValueChanged<dynamic> onChanged) {
       return Container(
@@ -195,6 +206,7 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
       );
     }
 
+    /// Builds the input part of the screen
     Widget _buildInputContainer() {
       return Container(
         child: Padding(
@@ -248,6 +260,7 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
       );
     }
 
+    /// Builds the arrows
     Widget _buildArrows() {
       return Container(
         child: RotatedBox(
@@ -258,6 +271,7 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
       );
     }
 
+    /// Builds the output part of the screen
     Widget _buildOutputContainer() {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
@@ -311,6 +325,7 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
       );
     }
 
+    /// Returns [ErrorUI] or [UnitConverter] based on the value of [_showValidationError]
     Widget _buildScreen() {
       if (_showValidationError) {
         return ErrorUI(
@@ -336,6 +351,7 @@ class _UnitConFgUIState extends State<UnitConFgUI> {
       }
     }
 
+    /// Final return
     return _buildScreen();
   }
 }

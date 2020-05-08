@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Creates a [Unit] with name and conversion properties
 class Unit {
   String name;
   double conversion;
