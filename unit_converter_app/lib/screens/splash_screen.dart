@@ -9,11 +9,14 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+  /// Method to display [SplashScreen] for the given duration
   startTime() async {
     var _duration = Duration(seconds: 2);
     return Timer(_duration, navigationPage);
   }
 
+  /// Callback to navigate to the main screen i.e [CategoryScreen]
   void navigationPage() {
     Navigator.of(context).pushReplacementNamed('/CategoryScreen');
   }

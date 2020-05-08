@@ -7,6 +7,7 @@ import 'package:unitconverterapp/component/menuBgUI.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 
+/// Menu cum About section
 class MenuScreen extends StatefulWidget {
   @override
   _MenuScreenState createState() => _MenuScreenState();
@@ -48,7 +49,7 @@ class _MenuScreenState extends State<MenuScreen> {
     super.initState();
     _repoButton = TapGestureRecognizer()
       ..onTap = () {
-        HapticFeedback.heavyImpact();
+        HapticFeedback.vibrate();
         _launchUrl(
           'https://github.com/bharat-1809/Unito',
         );
@@ -71,6 +72,7 @@ class _MenuScreenState extends State<MenuScreen> {
           fontFamily: 'SourceSans',
         );
 
+    /// Returns the upperContent of the screen
     Widget _buildMenuContent() {
       return Container(
         height: _height,
@@ -189,6 +191,7 @@ class _MenuScreenState extends State<MenuScreen> {
       );
     }
 
+    /// Returns flare actor (minion)
     Widget _buildFlareMinion() {
       return Container(
         height: _height / 3.2,
@@ -202,6 +205,7 @@ class _MenuScreenState extends State<MenuScreen> {
       );
     }
 
+    /// Reusable widget to build [SocialButtons]
     Widget _buildSocialButton({
       @required String name,
       @required String iconLocation,
@@ -250,6 +254,7 @@ class _MenuScreenState extends State<MenuScreen> {
       );
     }
 
+    /// Returns Error Screen or the main content screen depending on [_showNetworkError]
     Widget _buildScreen() {
       if (_showNetworkError) {
         return ErrorUI(
@@ -412,6 +417,7 @@ class _MenuScreenState extends State<MenuScreen> {
       }
     }
 
+    /// Final return of the class
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       body: Container(
