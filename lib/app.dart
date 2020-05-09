@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:unitconverterapp/screens/category_screen.dart';
+import 'package:unito/screens/category_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:unitconverterapp/screens/splash_screen.dart';
+import 'package:unito/screens/splash_screen.dart';
 import 'theme/themeChanger.dart';
 
 /// Contains the MaterialApp widget

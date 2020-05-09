@@ -2,8 +2,8 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:unitconverterapp/component/errorUI.dart';
-import 'package:unitconverterapp/component/menuBgUI.dart';
+import 'package:unito/component/errorUI.dart';
+import 'package:unito/component/menuBgUI.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 

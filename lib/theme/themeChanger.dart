@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:unitconverterapp/theme/themes.dart';
+import 'package:unito/theme/themes.dart';
 
 AppTheme appTheme = AppTheme();
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:unitconverterapp/component/errorUI.dart';
-import 'package:unitconverterapp/component/unit.dart';
+import 'package:unito/component/errorUI.dart';
+import 'package:unito/component/unit.dart';
 
 /// The Unitconverter main logic and some UI
 class UnitConFgUI extends StatefulWidget {

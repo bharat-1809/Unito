@@ -1,4 +1,4 @@
-package com.example.unit_converter_app
+package dot.studios.unito
 
 import io.flutter.embedding.android.FlutterActivity
 

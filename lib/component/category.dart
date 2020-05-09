@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:unitconverterapp/component/unit.dart';
+import 'package:unito/component/unit.dart';
 
 /// A class containing [Category] name, iconLocation, and List if corresponding units 
 class Category {

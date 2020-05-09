@@ -2,13 +2,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:unitconverterapp/component/category.dart';
-import 'package:unitconverterapp/component/category_tile.dart';
-import 'package:unitconverterapp/component/unit.dart';
-import 'package:unitconverterapp/screens/menu_screen.dart';
-import 'package:unitconverterapp/theme/themeChanger.dart';
+import 'package:unito/component/category.dart';
+import 'package:unito/component/category_tile.dart';
+import 'package:unito/component/unit.dart';
+import 'package:unito/screens/menu_screen.dart';
+import 'package:unito/theme/themeChanger.dart';
 import 'package:provider/provider.dart';
-import 'package:unitconverterapp/theme/themes.dart';
+import 'package:unito/theme/themes.dart';
 
 /// Builds the main screen.
 /// Containing the title, buttons and GridView

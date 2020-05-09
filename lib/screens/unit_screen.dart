@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:unitconverterapp/component/category.dart';
-import 'package:unitconverterapp/component/unitCon_Logic.dart';
-import 'package:unitconverterapp/component/unit_UI.dart';
-import 'package:unitconverterapp/screens/menu_screen.dart';
+import 'package:unito/component/category.dart';
+import 'package:unito/component/unitCon_Logic.dart';
+import 'package:unito/component/unit_UI.dart';
+import 'package:unito/screens/menu_screen.dart';
 
 /// Unit Converter Page.
 /// Builds the Unit Converter Page
