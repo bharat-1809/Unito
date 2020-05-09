@@ -1,0 +1,51 @@
+name: unito
+description: Unit Converter App built using Flutter
+
+version: 1.1.1+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^0.1.2
+  provider: ^4.0.5+1
+  page_transition: ^1.1.5
+  flare_flutter: ^2.0.3
+  url_launcher: ^5.4.5
+  firebase_analytics: ^5.0.11
+  data_connection_checker: ^0.3.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/icons/
+    - assets/data/units.json
+    - assets/flare/
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Bold.ttf
+        - asset: assets/fonts/Roboto-Medium.ttf
+        - asset: assets/fonts/Roboto-Regular.ttf
+    - family: Roboto_Con
+      fonts:
+        - asset: assets/fonts/RobotoCondensed-Bold.ttf
+        - asset: assets/fonts/RobotoCondensed-Regular.ttf
+    - family: Galada
+      fonts:
+        - asset: assets/fonts/Galada-Regular.ttf
+    - family: Pacifico
+      fonts:
+        - asset: assets/fonts/Pacifico-Regular.ttf
+    - family: SourceSans
+      fonts:
+        - asset: assets/fonts/SourceSansPro-Regular.ttf
