@@ -12,7 +12,7 @@
 <a href="https://github.com/bharat-1809/Unito/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-red" />
 </a>
-<a href="https://paypal.com">
+<a href="https://paypal.me/bsharma1809">
     <img src="https://img.shields.io/badge/Donate-Paypal-green" />
 </a>
 </div>
