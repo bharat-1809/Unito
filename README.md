@@ -23,7 +23,7 @@
 <br>
  Key UI implementations:
 
-- Dynamic Theme (Dark theme)
+- Dynamic Theme
 - Animated Splash screen
 - Flare 2D animations
 - Transition animations
