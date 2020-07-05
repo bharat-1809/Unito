@@ -12,11 +12,8 @@ before_script:
   - git clone https://github.com/flutter/flutter.git -b beta
   - ./flutter/bin/flutter doctor
   - ./flutter/bin/flutter doctor --android-licenses
-  - chmod +x generate-apks.sh
 script:
   - ./flutter/bin/flutter build apk
-after_success:
-  - ./generate-apks.sh
 cache:
   directories:
     - $HOME/.pub-cache
