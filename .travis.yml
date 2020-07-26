@@ -13,7 +13,7 @@ before_script:
   - ./flutter/bin/flutter doctor
   - ./flutter/bin/flutter doctor --android-licenses
 script:
-  - ./flutter/bin/flutter run
+  - ./flutter/bin/flutter build apk
 cache:
   directories:
     - $HOME/.pub-cache
