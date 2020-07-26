@@ -9,6 +9,9 @@
 <a href="https://github.com/bharat-1809/Unito">
     <img src="https://img.shields.io/badge/Version-v1.1.1-yellow" />
 </a>
+<a href="https://travis-ci.org/bharat-1809/Unito">
+    <img src="https://travis-ci.org/bharat-1809/Unito.svg?branch=master" />
+</a>
 <a href="https://github.com/bharat-1809/Unito/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-red" />
 </a>
