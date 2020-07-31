@@ -28,6 +28,7 @@
 - Transition animations
 
 ### Screenshots
-
-<img src="https://github.com/bharat-1809/Unito/blob/master/img1.png" width="200" />
-<img src="https://github.com/bharat-1809/Unito/blob/master/image1.png" width="200" />
+<div>
+<img src="https://github.com/bharat-1809/Unito/blob/master/img1.png" width="300" />
+<img src="https://github.com/bharat-1809/Unito/blob/master/image1.png" width="300" />
+</div>
