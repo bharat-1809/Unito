@@ -21,9 +21,13 @@
 ##### <a href="https://github.com/bharat-1809/Unito">Unito</a> is a casual utility app that shows the implementation of modern materialistic UI in <a href="https://flutter.dev">Flutter</a>
 
 <br>
- Key UI implementations:
+**Key UI implementations:**
 
 - Dynamic Theme
 - Animated Splash screen
 - Flare 2D animations
 - Transition animations
+
+**Screenshots**
+<img src="https://github.com/bharat-1809/Unito/blob/master/img1.png" width="100" />
+<img src="https://github.com/bharat-1809/Unito/blob/master/image1.png" width="100" />
