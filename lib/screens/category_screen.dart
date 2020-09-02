@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:unito/component/appAds.dart';
 import 'package:unito/component/category.dart';
 import 'package:unito/component/category_tile.dart';
 import 'package:unito/component/unit.dart';
@@ -9,6 +10,7 @@ import 'package:unito/screens/menu_screen.dart';
 import 'package:unito/theme/themeChanger.dart';
 import 'package:provider/provider.dart';
 import 'package:unito/theme/themes.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 
 /// Builds the main screen.
 /// Containing the title, buttons and GridView
@@ -54,6 +56,83 @@ class _CategoryScreenState extends State<CategoryScreen> {
     'assets/icons/time2.png',
   ];
 
+  BannerAd _bannerAd;
+  InterstitialAd _interstitialAd;
+
+  bool _isInterstitialAdReady;
+
+  void _loadInterstitialAd() {
+    print("Loading Interstitial Ad");
+    _interstitialAd.load();
+  }
+
+  void _reloadInterstitialAd() async {
+    await _interstitialAd.dispose();
+
+    _isInterstitialAdReady = false;
+
+    _interstitialAd = InterstitialAd(
+      adUnitId: AddManager.interstitialAdUnitId,
+      listener: _onInterstitialAdEvent,
+    );
+
+    _interstitialAd.load();
+  }
+
+  void _moveToHome() {}
+
+  void _onInterstitialAdEvent(MobileAdEvent event) {
+    switch (event) {
+      case MobileAdEvent.loaded:
+        print("---------------------------> Interstitial Ad Loaded");
+        _isInterstitialAdReady = true;
+        break;
+      case MobileAdEvent.failedToLoad:
+        _isInterstitialAdReady = false;
+        print("---------------------------> Failed to load an interstitial ad");
+        break;
+      case MobileAdEvent.closed:
+        _moveToHome();
+        break;
+      default:
+      // NOTHING
+    }
+  }
+
+  void _loadBannerAd() {
+    _bannerAd
+      ..load()
+      ..show(anchorType: AnchorType.bottom);
+  }
+
+  @override
+  void initState() {
+    _isInterstitialAdReady = false;
+
+    _bannerAd = BannerAd(
+      adUnitId: AddManager.bannerAdUnitId,
+      size: AdSize.banner,
+    );
+
+    _interstitialAd = InterstitialAd(
+      adUnitId: AddManager.interstitialAdUnitId,
+      listener: _onInterstitialAdEvent,
+    );
+
+    _loadBannerAd();
+    _loadInterstitialAd();
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _bannerAd?.dispose();
+    _interstitialAd?.dispose();
+
+    super.dispose();
+  }
+
   @override
   Future<void> didChangeDependencies() async {
     super.didChangeDependencies();
@@ -64,16 +143,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   /// This method parses JSON file and add to the categories list
   Future<void> _retrieveLocalCategories() async {
-    final json =
-        DefaultAssetBundle.of(context).loadString('assets/data/units.json');
+    final json = DefaultAssetBundle.of(context).loadString('assets/data/units.json');
     final data = JsonDecoder().convert(await json);
     if (data is! Map) {
       throw ('Json is not a Map');
     }
     var categoryIndex = 0;
     data.keys.forEach((key) {
-      final List<Unit> units =
-          data[key].map<Unit>((dynamic data) => Unit.fromJson(data)).toList();
+      final List<Unit> units = data[key].map<Unit>((dynamic data) => Unit.fromJson(data)).toList();
 
       var category = Category(
           iconLocation: _iconLocationLight[categoryIndex],
@@ -102,8 +179,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     void updateCategoryIcons() {
       setState(() {
         for (var i = 0; i < _categories.length; ++i) {
-          _categories[i].iconLocation =
-              isDarkTheme ? _iconLocationDark[i] : _iconLocationLight[i];
+          _categories[i].iconLocation = isDarkTheme ? _iconLocationDark[i] : _iconLocationLight[i];
         }
       });
     }
@@ -159,11 +235,17 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
               /// Theme toggle icon
               IconButton(
-                onPressed: () {
+                onPressed: () async {
+                  if (_isInterstitialAdReady) {
+                    _interstitialAd.show();
+                  }
+
                   print("Theme change toogled");
-                  theme.themeData = isDarkTheme
-                      ? appTheme.getLightTheme()
-                      : appTheme.getDarkTheme();
+                  theme.themeData =
+                      isDarkTheme ? appTheme.getLightTheme() : appTheme.getDarkTheme();
+
+                  _moveToHome();
+                  _reloadInterstitialAd();
                 },
                 padding: EdgeInsets.all(0.0),
                 highlightColor: Colors.transparent,

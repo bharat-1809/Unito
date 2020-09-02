@@ -6,12 +6,11 @@ import 'package:unito/theme/themeChanger.dart';
 
 void main() {
   /// This ensures that the orientation is always portrait
-  // TODO: Add landscpae mode functionality in the near future
+
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((_) => runApp(
-            Unito(),
-          ));
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((_) => runApp(
+        Unito(),
+      ));
 }
 
 /// Unit Converter App.

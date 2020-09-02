@@ -2,6 +2,7 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 
 /// Error Dialog Box
+// ignore: must_be_immutable
 class ErrorUI extends StatefulWidget {
   final String errorText;
   final VoidCallback onPressed;
