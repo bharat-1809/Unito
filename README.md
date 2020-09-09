@@ -21,11 +21,9 @@
 
 ##### <a href="https://github.com/bharat-1809/Unito">Unito</a> is a casual utility app that shows the implementation of modern materialistic UI in <a href="https://flutter.dev">Flutter</a>
 
-<br><br>
-<a href="https://play.google.com/store/apps/details?id=dot.studios.unito" alt="Unito">
-    <img src="https://www.apkmirror.com/wp-content/uploads/2019/03/5c8ca16159150.png" width="70px" alt="Unito">
-</a>
-<br><br>
+<br>
+
+<a href='https://play.google.com/store/apps/details?id=dot.studios.unito&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width="200"/></a>
 
 ### Key UI implementations:
 
