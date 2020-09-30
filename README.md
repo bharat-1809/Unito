@@ -20,6 +20,7 @@
 <br>
 
 ##### <a href="https://github.com/bharat-1809/Unito">Unito</a> is a casual utility app that shows the implementation of modern materialistic UI in <a href="https://flutter.dev">Flutter</a>
+Unito helps in unit conversion of daily measurements and it's a handy app for students, homemakers and anyone looking for easy way out from calculations!
 
 <br>
 
