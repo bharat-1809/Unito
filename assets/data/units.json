@@ -1,4 +1,4 @@
-{// Conversion conditions for length
+{
   "Length": [
     {
       "name": "Meter",
@@ -33,7 +33,7 @@
       "name": "Mile",
       "conversion": 0.000621371
     }
-  ],//Conversion conditions for area
+  ],
   "Area": [
     {
       "name": "Meter squared",
@@ -65,7 +65,7 @@
       "conversion": 0.0001
     }
   ],
-  //Conversion conditions for volume
+  
   "Volume": [
     {
       "name": "Cubic meter",
@@ -156,7 +156,7 @@
     },
     {
       "name": "Kilobyte",
-      "conversion": 1000.0
+      "conversion": 1024.0
     },
     {
       "name": "Gigabyte",
