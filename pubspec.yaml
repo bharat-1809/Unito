@@ -1,23 +1,21 @@
 name: unito
 description: Unit Converter App built using Flutter
 
-version: 1.0.2+211
+version: 1.1.0
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.10.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-
-  cupertino_icons: ^0.1.2
-  provider: ^4.0.5+1
-  page_transition: ^1.1.5
-  flare_flutter: ^2.0.3
-  url_launcher: ^5.4.5
-  firebase_analytics: ^5.0.11
+  cupertino_icons: ^1.0.2
+  provider: ^5.0.0
+  flare_flutter: ^3.0.0-nullsafety.1
+  url_launcher: ^6.0.2
+  firebase_analytics: ^7.1.1
   data_connection_checker: ^0.3.4
-  firebase_admob: ^0.9.3+4
+  google_mobile_ads: ^0.11.0+4
 
 dev_dependencies:
   flutter_test:

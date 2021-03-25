@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:unito/component/category.dart';
 import 'package:unito/component/unitCon_Logic.dart';
 import 'package:unito/component/unit_UI.dart';
@@ -88,9 +87,8 @@ class _UnitConverterState extends State<UnitConverter> {
                 padding: EdgeInsets.all(0),
                 onPressed: () {
                   print('Heigth: $height || Width: $width');
-                  Navigator.of(context).push(PageTransition(
-                    child: MenuScreen(),
-                    type: PageTransitionType.rightToLeftWithFade,
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => MenuScreen(),
                   ));
                 },
                 child: Image.asset(
@@ -140,7 +138,7 @@ class _UnitConverterState extends State<UnitConverter> {
 
     /// Final Return
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(

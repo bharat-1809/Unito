@@ -419,7 +419,7 @@ class _MenuScreenState extends State<MenuScreen> {
 
     /// Final return of the class
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       body: Container(
         color: Theme.of(context).focusColor,
         child: SafeArea(
