@@ -1,9 +1,7 @@
 import 'dart:async';
 
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
-import 'package:unito/component/appAds.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -13,7 +11,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   /// Method to display [SplashScreen] for the given duration
   startTime() async {
-    var _duration = Duration(seconds: 2);
+    var _duration = Duration(milliseconds: 1500);
     return Timer(_duration, navigationPage);
   }
 
@@ -22,14 +20,10 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.of(context).pushReplacementNamed('/CategoryScreen');
   }
 
-  Future<void> _initAdMob() async {
-    return FirebaseAdMob.instance.initialize(appId: AddManager.appId);
-  }
-
   @override
   void initState() {
     super.initState();
-    _initAdMob().then((_) => startTime());
+    startTime();
   }
 
   @override

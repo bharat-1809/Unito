@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:unito/component/appAds.dart';
 import 'package:unito/component/category.dart';
 import 'package:unito/component/category_tile.dart';
@@ -10,7 +10,6 @@ import 'package:unito/screens/menu_screen.dart';
 import 'package:unito/theme/themeChanger.dart';
 import 'package:provider/provider.dart';
 import 'package:unito/theme/themes.dart';
-import 'package:firebase_admob/firebase_admob.dart';
 
 /// Builds the main screen.
 /// Containing the title, buttons and GridView
@@ -56,86 +55,55 @@ class _CategoryScreenState extends State<CategoryScreen> {
     'assets/icons/time2.png',
   ];
 
-  BannerAd _bannerAd;
-  InterstitialAd _interstitialAd;
-
-  bool _isInterstitialAdReady;
-
-  void _loadInterstitialAd() {
-    print("Loading Interstitial Ad");
-    _interstitialAd.load();
-  }
-
-  void _reloadInterstitialAd() async {
-    await _interstitialAd.dispose();
-
-    _isInterstitialAdReady = false;
-
-    _interstitialAd = InterstitialAd(
-      adUnitId: AddManager.interstitialAdUnitId,
-      listener: _onInterstitialAdEvent,
-    );
-
-    _interstitialAd.load();
-  }
-
-  void _moveToHome() {}
-
-  void _onInterstitialAdEvent(MobileAdEvent event) {
-    switch (event) {
-      case MobileAdEvent.loaded:
-        print("---------------------------> Interstitial Ad Loaded");
-        _isInterstitialAdReady = true;
-        break;
-      case MobileAdEvent.failedToLoad:
-        _isInterstitialAdReady = false;
-        print("---------------------------> Failed to load an interstitial ad");
-        break;
-      case MobileAdEvent.closed:
-        _moveToHome();
-        break;
-      default:
-      // NOTHING
-    }
-  }
-
-  void _loadBannerAd() {
-    _bannerAd
-      ..load()
-      ..show(anchorType: AnchorType.bottom);
-  }
-
-  @override
-  void initState() {
-    _isInterstitialAdReady = false;
-
-    _bannerAd = BannerAd(
-      adUnitId: AddManager.bannerAdUnitId,
-      size: AdSize.banner,
-    );
-
-    _interstitialAd = InterstitialAd(
-      adUnitId: AddManager.interstitialAdUnitId,
-      listener: _onInterstitialAdEvent,
-    );
-
-    _loadBannerAd();
-    _loadInterstitialAd();
-
-    super.initState();
-  }
+  BannerAd _bannerAdBottom;
+  BannerAd _bannerAdTop;
+  InterstitialAd _interstitialAdTheme;
+  InterstitialAd _interstitialAdAbout;
 
   @override
   void dispose() {
-    _bannerAd?.dispose();
-    _interstitialAd?.dispose();
-
+    _bannerAdBottom.dispose();
+    _bannerAdTop.dispose();
+    _interstitialAdTheme.dispose();
+    _interstitialAdAbout.dispose();
     super.dispose();
   }
 
   @override
   Future<void> didChangeDependencies() async {
     super.didChangeDependencies();
+    if (_bannerAdBottom == null || _bannerAdTop == null || _interstitialAdTheme == null) {
+      final _adManager = Provider.of<AddManager>(context);
+      _adManager.initialization.then((status) {
+        setState(() {
+          _bannerAdBottom = BannerAd(
+            size: AdSize.banner,
+            adUnitId: _adManager.bottomBannerAdId,
+            request: AdRequest(),
+            listener: _adManager.adListener,
+          )..load();
+
+          _bannerAdTop = BannerAd(
+            size: AdSize.banner,
+            adUnitId: _adManager.topBannerAdId,
+            request: AdRequest(),
+            listener: _adManager.adListener,
+          )..load();
+
+          _interstitialAdTheme = InterstitialAd(
+            adUnitId: _adManager.themeInterstitialAdId,
+            listener: _adManager.adListener,
+            request: AdRequest(),
+          )..load();
+
+          _interstitialAdAbout = InterstitialAd(
+            adUnitId: _adManager.aboutInterstitialAdId,
+            listener: _adManager.adListener,
+            request: AdRequest(),
+          )..load();
+        });
+      });
+    }
     if (_categories.isEmpty) {
       await _retrieveLocalCategories();
     }
@@ -208,7 +176,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
       updateCategoryIcons();
       return GridView.count(
         crossAxisCount: 2,
-        childAspectRatio: 1,
+        childAspectRatio: 1.2,
         padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 1.0),
         children: _categories.map((Category c) {
           return CategoryTile(category: c);
@@ -224,28 +192,24 @@ class _CategoryScreenState extends State<CategoryScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           /// Spacer
-          SizedBox(height: 0.02401359593392630365 * height),
+          SizedBox(height: 0.005501359593392630365 * height),
 
           /// Top Icon Row
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               /// Spacer
-              SizedBox(width: width / 90),
 
               /// Theme toggle icon
               IconButton(
                 onPressed: () async {
-                  if (_isInterstitialAdReady) {
-                    _interstitialAd.show();
+                  if (_interstitialAdTheme != null) {
+                    _interstitialAdTheme.show();
                   }
 
-                  print("Theme change toogled");
+                  print('Theme changed toggled');
                   theme.themeData =
                       isDarkTheme ? appTheme.getLightTheme() : appTheme.getDarkTheme();
-
-                  _moveToHome();
-                  _reloadInterstitialAd();
                 },
                 padding: EdgeInsets.all(0.0),
                 highlightColor: Colors.transparent,
@@ -256,7 +220,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   color: Theme.of(context).iconTheme.color,
                 ),
               ),
-              SizedBox(width: width / 2),
+              SizedBox(width: width / 3),
 
               /// Menu Icon
               FlatButton(
@@ -264,11 +228,13 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onPressed: () {
-                  print('Height: $height || Width: $width');
-                  Navigator.of(context).push(PageTransition(
-                    child: MenuScreen(),
-                    type: PageTransitionType.rightToLeftWithFade,
-                  ));
+                  if (_interstitialAdAbout != null) {
+                    _interstitialAdAbout.show();
+                  }
+
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => MenuScreen()),
+                  );
                 },
                 child: getIcon(),
               ),
@@ -276,7 +242,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           ),
 
           /// Spacer
-          SizedBox(height: 0.01901359593392630365 * height),
+          SizedBox(height: 0.01001359593392630365 * height),
 
           /// Heading Container
           Row(
@@ -290,14 +256,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     style: Theme.of(context)
                         .textTheme
                         .headline5
-                        .copyWith(fontSize: 0.05559085133418043379 * height),
+                        .copyWith(fontSize: 0.05059085133418043379 * height),
                   ),
                   Text(
                     "Converter",
                     style: Theme.of(context)
                         .textTheme
                         .headline5
-                        .copyWith(fontSize: 0.05559085133418043379 * height),
+                        .copyWith(fontSize: 0.05059085133418043379 * height),
                   ),
                 ],
               ),
@@ -305,11 +271,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
           ),
 
           /// Spacer
-          SizedBox(height: 0.03901359593392630365 * height),
+          SizedBox(height: 0.02001359593392630365 * height),
 
           /// Container for sub-heading
           Container(
-            width: 0.43472222222222220737 * width,
+            width: 0.39472222222222220737 * width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(70),
               color: Theme.of(context).accentColor,
@@ -321,13 +287,22 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 style: Theme.of(context)
                     .textTheme
                     .subtitle1
-                    .copyWith(fontSize: 0.01890088945362134749 * height),
+                    .copyWith(fontSize: 0.01590088945362134749 * height),
               ),
             ),
           ),
+          SizedBox(height: 0.02035451080050826027 * height),
+
+          if (_bannerAdTop == null)
+            SizedBox(height: 50)
+          else
+            Container(
+              height: 50,
+              child: AdWidget(ad: _bannerAdTop),
+            ),
 
           /// Spacer
-          SizedBox(height: 0.02035451080050826027 * height),
+          // SizedBox(height: 0.02035451080050826027 * height),
         ],
       );
     }
@@ -340,13 +315,21 @@ class _CategoryScreenState extends State<CategoryScreen> {
         children: <Widget>[
           Expanded(flex: 3, child: _topBar()),
           Expanded(flex: 5, child: _buildCategoryGrid()),
+          if (_bannerAdBottom == null)
+            SizedBox(height: 50)
+          else
+            Container(
+              height: 60,
+              alignment: Alignment.bottomCenter,
+              child: AdWidget(ad: _bannerAdBottom),
+            ),
         ],
       );
     }
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: listView(),
       ),

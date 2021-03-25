@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:unito/app.dart';
+import 'package:unito/component/appAds.dart';
 import 'package:unito/theme/themeChanger.dart';
 
 void main() {
-  /// This ensures that the orientation is always portrait
-
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((_) => runApp(
-        Unito(),
-      ));
+  final initFuture = MobileAds.instance.initialize();
+  final adManager = AddManager(initFuture);
+
+  /// This ensures that the orientation is always portrait
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
+    (_) => runApp(Provider.value(
+      value: adManager,
+      builder: (context, child) => Unito(),
+    )),
+  );
 }
 
 /// Unit Converter App.

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:unito/component/category.dart';
 import 'package:unito/screens/unit_screen.dart';
 
@@ -19,10 +18,11 @@ class CategoryTile extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
 
     void _openConverterRoute(Category categoryUnit) {
-      Navigator.of(context).push(PageTransition(
-        child: UnitConverter(category: categoryUnit),
-        type: PageTransitionType.rightToLeftWithFade,
-      ));
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => UnitConverter(category: categoryUnit),
+        ),
+      );
     }
 
     return Padding(
@@ -35,7 +35,7 @@ class CategoryTile extends StatelessWidget {
           borderRadius: _borderRadius,
           boxShadow: [
             BoxShadow(
-              color: Color.fromRGBO(46, 46, 46, 0.05),
+              color: Color.fromRGBO(46, 46, 46, 0.03),
               offset: Offset(0.0, 0.0),
               spreadRadius: 5,
               blurRadius: 10,
@@ -61,11 +61,11 @@ class CategoryTile extends StatelessWidget {
                     padding: _padding8,
                     child: Image.asset(
                       category.iconLocation,
-                      height: 0.07226810673443456392 * height,
-                      width: 0.07226810673443456392 * height,
+                      height: 0.065 * height,
+                      width: 0.065 * height,
                     ),
                   ),
-                  SizedBox(height: 0.00222363405336721735 * height),
+                  SizedBox(height: 0.0022 * height),
                   Text(
                     category.name,
                     style: Theme.of(context).textTheme.caption,
