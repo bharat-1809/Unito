@@ -8,7 +8,7 @@
     <img src="https://img.shields.io/badge/Platform-Flutter-blue" />
 </a>
 <a href="https://github.com/bharat-1809/Unito">
-    <img src="https://img.shields.io/badge/Version-v1.0.2-yellow" />
+    <img src="https://img.shields.io/badge/Version-v1.1.0-yellow" />
 </a>
 <a href="https://github.com/bharat-1809/Unito/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-red" />
