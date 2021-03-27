@@ -4,7 +4,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AddManager {
   AddManager(this.initialization);
-  Future<InitializationStatus> initialization;
+  InitializationStatus initialization;
 
   String get appId {
     if (Platform.isAndroid) {
@@ -16,7 +16,7 @@ class AddManager {
     }
   }
 
-  String get bottomBannerAdId {
+  String get homeBannerAdId {
     if (Platform.isAndroid) {
       return "ca-app-pub-1828204131712236/2650387606";
     } else if (Platform.isIOS) {
@@ -26,7 +26,7 @@ class AddManager {
     }
   }
 
-  String get topBannerAdId {
+  String get unitBannerAdId {
     if (Platform.isAndroid) {
       return "ca-app-pub-1828204131712236/8522925412";
     } else if (Platform.isIOS) {

@@ -74,34 +74,32 @@ class _CategoryScreenState extends State<CategoryScreen> {
     super.didChangeDependencies();
     if (_bannerAdBottom == null || _bannerAdTop == null || _interstitialAdTheme == null) {
       final _adManager = Provider.of<AddManager>(context);
-      _adManager.initialization.then((status) {
-        setState(() {
-          _bannerAdBottom = BannerAd(
-            size: AdSize.banner,
-            adUnitId: _adManager.bottomBannerAdId,
-            request: AdRequest(),
-            listener: _adManager.adListener,
-          )..load();
+      setState(() {
+        _bannerAdBottom = BannerAd(
+          size: AdSize.banner,
+          adUnitId: _adManager.homeBannerAdId,
+          request: AdRequest(),
+          listener: _adManager.adListener,
+        )..load();
 
-          _bannerAdTop = BannerAd(
-            size: AdSize.banner,
-            adUnitId: _adManager.topBannerAdId,
-            request: AdRequest(),
-            listener: _adManager.adListener,
-          )..load();
+        _bannerAdTop = BannerAd(
+          size: AdSize.banner,
+          adUnitId: _adManager.unitBannerAdId,
+          request: AdRequest(),
+          listener: _adManager.adListener,
+        )..load();
 
-          _interstitialAdTheme = InterstitialAd(
-            adUnitId: _adManager.themeInterstitialAdId,
-            listener: _adManager.adListener,
-            request: AdRequest(),
-          )..load();
+        _interstitialAdTheme = InterstitialAd(
+          adUnitId: _adManager.themeInterstitialAdId,
+          listener: _adManager.adListener,
+          request: AdRequest(),
+        )..load();
 
-          _interstitialAdAbout = InterstitialAd(
-            adUnitId: _adManager.aboutInterstitialAdId,
-            listener: _adManager.adListener,
-            request: AdRequest(),
-          )..load();
-        });
+        _interstitialAdAbout = InterstitialAd(
+          adUnitId: _adManager.aboutInterstitialAdId,
+          listener: _adManager.adListener,
+          request: AdRequest(),
+        )..load();
       });
     }
     if (_categories.isEmpty) {
@@ -192,7 +190,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           /// Spacer
-          SizedBox(height: 0.005501359593392630365 * height),
+          SizedBox(height: 0.020501359593392630365 * height),
 
           /// Top Icon Row
           Row(
@@ -256,14 +254,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     style: Theme.of(context)
                         .textTheme
                         .headline5
-                        .copyWith(fontSize: 0.05059085133418043379 * height),
+                        .copyWith(fontSize: 0.05359085133418043379 * height),
                   ),
                   Text(
                     "Converter",
                     style: Theme.of(context)
                         .textTheme
                         .headline5
-                        .copyWith(fontSize: 0.05059085133418043379 * height),
+                        .copyWith(fontSize: 0.05359085133418043379 * height),
                   ),
                 ],
               ),
@@ -293,14 +291,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
           ),
           SizedBox(height: 0.02035451080050826027 * height),
 
-          if (_bannerAdTop == null)
-            SizedBox(height: 50)
-          else
-            Container(
-              height: 50,
-              child: AdWidget(ad: _bannerAdTop),
-            ),
-
           /// Spacer
           // SizedBox(height: 0.02035451080050826027 * height),
         ],
@@ -314,9 +304,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
       return Column(
         children: <Widget>[
           Expanded(flex: 3, child: _topBar()),
-          Expanded(flex: 5, child: _buildCategoryGrid()),
+          Expanded(flex: 6, child: _buildCategoryGrid()),
           if (_bannerAdBottom == null)
-            SizedBox(height: 50)
+            SizedBox(height: 60)
           else
             Container(
               height: 60,

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
+import 'package:unito/component/appAds.dart';
 import 'package:unito/component/category.dart';
 import 'package:unito/component/unitCon_Logic.dart';
 import 'package:unito/component/unit_UI.dart';
@@ -18,6 +21,28 @@ class UnitConverter extends StatefulWidget {
 }
 
 class _UnitConverterState extends State<UnitConverter> {
+  BannerAd _bannerAd;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final _adManager = Provider.of<AddManager>(context);
+    setState(() {
+      _bannerAd = BannerAd(
+        size: AdSize.banner,
+        adUnitId: _adManager.unitBannerAdId,
+        listener: _adManager.adListener,
+        request: AdRequest(),
+      )..load();
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _bannerAd.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -40,7 +65,7 @@ class _UnitConverterState extends State<UnitConverter> {
             ),
           ],
         ),
-        height: 0.612745098 * height,
+        height: 0.60 * height,
         width: 0.7895884774 * width,
         child: UnitConFgUI(
           units: widget.category.units,
@@ -58,7 +83,7 @@ class _UnitConverterState extends State<UnitConverter> {
           /// Spacer
           Column(
             children: <Widget>[
-              SizedBox(height: 0.02491359593392630365 * height),
+              SizedBox(height: 0.02091359593392630365 * height),
             ],
           ),
 
@@ -102,7 +127,7 @@ class _UnitConverterState extends State<UnitConverter> {
           ),
 
           /// Spacer
-          SizedBox(height: 0.04570902160101652054 * height),
+          SizedBox(height: 0.035 * height),
 
           /// Title and Image Row
           Row(
@@ -128,10 +153,20 @@ class _UnitConverterState extends State<UnitConverter> {
           ),
 
           /// Spacer
-          SizedBox(height: width / 7),
+          SizedBox(height: width / 8),
 
           /// Unit Converter Input Container
           unitInputContainer(),
+
+          SizedBox(height: 10),
+
+          if (_bannerAd == null)
+            SizedBox(height: 50)
+          else
+            Container(
+              height: 50,
+              child: AdWidget(ad: _bannerAd),
+            ),
         ],
       );
     }
