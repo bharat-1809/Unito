@@ -6,9 +6,9 @@ import 'package:unito/app.dart';
 import 'package:unito/component/appAds.dart';
 import 'package:unito/theme/themeChanger.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  final initFuture = await MobileAds.instance.initialize();
+  final initFuture = MobileAds.instance.initialize();
   final adManager = AddManager(initFuture);
 
   /// This ensures that the orientation is always portrait

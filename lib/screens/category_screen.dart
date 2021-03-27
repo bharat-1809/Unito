@@ -56,14 +56,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
   ];
 
   BannerAd _bannerAdBottom;
-  BannerAd _bannerAdTop;
   InterstitialAd _interstitialAdTheme;
   InterstitialAd _interstitialAdAbout;
 
   @override
   void dispose() {
     _bannerAdBottom.dispose();
-    _bannerAdTop.dispose();
     _interstitialAdTheme.dispose();
     _interstitialAdAbout.dispose();
     super.dispose();
@@ -72,19 +70,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Future<void> didChangeDependencies() async {
     super.didChangeDependencies();
-    if (_bannerAdBottom == null || _bannerAdTop == null || _interstitialAdTheme == null) {
+    if (_bannerAdBottom == null || _interstitialAdTheme == null || _interstitialAdAbout == null) {
       final _adManager = Provider.of<AddManager>(context);
+      _adManager.initialization.then((value) => print(value));
+
       setState(() {
         _bannerAdBottom = BannerAd(
           size: AdSize.banner,
           adUnitId: _adManager.homeBannerAdId,
-          request: AdRequest(),
-          listener: _adManager.adListener,
-        )..load();
-
-        _bannerAdTop = BannerAd(
-          size: AdSize.banner,
-          adUnitId: _adManager.unitBannerAdId,
           request: AdRequest(),
           listener: _adManager.adListener,
         )..load();

@@ -4,7 +4,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AddManager {
   AddManager(this.initialization);
-  InitializationStatus initialization;
+  Future<InitializationStatus> initialization;
 
   String get appId {
     if (Platform.isAndroid) {
