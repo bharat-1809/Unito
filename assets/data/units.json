@@ -65,6 +65,7 @@
       "conversion": 0.0001
     }
   ],
+  
   "Volume": [
     {
       "name": "Cubic meter",
@@ -155,7 +156,7 @@
     },
     {
       "name": "Kilobyte",
-      "conversion": 1000.0
+      "conversion": 1024.0
     },
     {
       "name": "Gigabyte",
